@@ -1,6 +1,6 @@
-#Code of Conduct
+# Code of Conduct
 
-##Ethics
+## Ethics
 - Act with integrity, competence, diligence, respect and in an ethical manner with every participants in the project
 - I will act with fairness and impartiality. 
 - I will not discriminate unlawfully or unfairly.
