@@ -7,9 +7,14 @@ import org.bson.Document;
 
 public class App
 {
+    /**
+     *
+     * @param args test
+     */
     public static void main(String[] args)
     {
         // Connect to MongoDB
+
         MongoClient mongoClient = new MongoClient("mongo-dbserver");
         // Get a database - will create when we use it
         MongoDatabase database = mongoClient.getDatabase("mydb");
