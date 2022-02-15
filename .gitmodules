@@ -1,3 +1,3 @@
-[submodule "SQLDatabase"]
-	path = SQLDatabase
+[submodule "db/SQLDatabase"]
+	path = db/SQLDatabase
 	url = https://github.com/drewseffi/SQLDatabase
