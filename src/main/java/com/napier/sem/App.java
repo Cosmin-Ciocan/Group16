@@ -11,6 +11,7 @@ public class App {
         // Connect to database
         a.connect();
 
+        //request 1
         a.printCountries(a.test());
 
         // Disconnect from database
