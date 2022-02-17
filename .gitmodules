@@ -1,6 +1,4 @@
 [submodule "db/SQLDatabase"]
 	path = db/SQLDatabase
 	url = https://github.com/drewseffi/SQLDatabase
-[submodule "db/test_db"]
-	path = db/test_db
-	url = https://github.com/datacharmer/test_db
+
