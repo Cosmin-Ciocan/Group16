@@ -1,7 +1,11 @@
 package com.napier.sem;
 
 import java.sql.*;
+import java.util.ArrayList;
 
+/**
+ * main app
+ */
 public class App
 {
     public static void main(String[] args)
@@ -11,32 +15,18 @@ public class App
 
         // Connect to database
         a.connect();
-        // Get Employee
-        Country emp = a.getCountry(300000);
-        // Display results
-        a.displayCountry(emp);
+
+        //request 1
+        a.printCountries(a.countriesWorldPop());
 
         // Disconnect from database
         a.disconnect();
     }
 
-    public void displayCountry(Country country)
-    {
-        if (country != null)
-        {
-            System.out.println(
-                    country.test2 + "\n");
-        }
-    }
-
-    /**
-     * Connection to MySQL database.
-     */
-    private Connection con = null;
-
     /**
      * Connect to the MySQL database.
      */
+    private Connection con = null;
     public void connect()
     {
         try
@@ -57,7 +47,7 @@ public class App
             try
             {
                 // Wait a bit for db to start
-                Thread.sleep(30000);
+                Thread.sleep(8000);
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
@@ -86,43 +76,72 @@ public class App
             {
                 // Close connection
                 con.close();
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 System.out.println("Error closing connection to database");
             }
         }
     }
 
-    public Country getCountry(int pop)
+
+    // Display methods
+
+    /**
+     * Display a country name
+     */
+    public void displayCountry(Country country)
     {
+        if (country != null)
+        {
+            System.out.println(country.name + "\n");
+        }
+    }
+
+
+    /**
+     * Display a list of countries
+     */
+    public void printCountries(ArrayList<Country> countries)
+    {
+        //print header
+        System.out.println(String.format("%-10s", "Name"));
+        // Loop over all countries in the list
+        for (Country cty  : countries)
+        {
+            String cty_string = String.format("%-10s",cty.name);
+            System.out.println(cty_string);
+        }
+    }
+
+
+    // WORLD //
+
+    /**
+     * All the countries in the world organised by largest population to smallest.
+     */
+    public ArrayList<Country> countriesWorldPop() {
         try
         {
-            // Create an SQL statement
             Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect =
-                    "SELECT Name "
-                            + "FROM country "
-                            + "WHERE Population > " + pop;
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
-            // Check one is returned
-            if (rset.next())
+
+            String strSelect = "SELECT Name FROM `country` ORDER BY Population DESC";
+
+            ResultSet resultSet = stmt.executeQuery(strSelect);
+
+            ArrayList<Country> countries = new ArrayList<>();
+            while (resultSet.next())
             {
-                Country country = new Country();
-                country.test2 = rset.getString("Name");
-                return country;
+                Country cty = new Country();
+                cty.name = resultSet.getString("Name");
+                countries.add(cty);
             }
-            else
-                return null;
+            return countries;
         }
         catch (Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get countries list");
             return null;
         }
     }
+
 }
