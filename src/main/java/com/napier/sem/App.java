@@ -2,6 +2,7 @@ package com.napier.sem;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * main app
@@ -16,8 +17,7 @@ public class App
         // Connect to database
         a.connect();
 
-        //request 1
-        a.printCountries(a.countriesWorldPop());
+        a.countriesRegionPop();
 
         // Disconnect from database
         a.disconnect();
@@ -82,48 +82,17 @@ public class App
         }
     }
 
-
-    // Display methods
-
-    /**
-     * Display a country name
-     */
-    public void displayCountry(Country country)
-    {
-        if (country != null)
-        {
-            System.out.println(country.name + "\n");
-        }
-    }
-
-
-    /**
-     * Display a list of countries
-     */
-    public void printCountries(ArrayList<Country> countries)
-    {
-        //print header
-        System.out.println(String.format("%-10s", "Name"));
-        // Loop over all countries in the list
-        for (Country cty  : countries)
-        {
-            String cty_string = String.format("%-10s",cty.name);
-            System.out.println(cty_string);
-        }
-    }
-
-
     // WORLD //
 
     /**
      * All the countries in the world organised by largest population to smallest.
      */
-    public ArrayList<Country> countriesWorldPop() {
+    public void countriesWorldPop() {
         try
         {
             Statement stmt = con.createStatement();
 
-            String strSelect = "SELECT Name FROM `country` ORDER BY Population DESC";
+            String strSelect = "SELECT Name, Population FROM `country` ORDER BY Population DESC";
 
             ResultSet resultSet = stmt.executeQuery(strSelect);
 
@@ -132,16 +101,183 @@ public class App
             {
                 Country cty = new Country();
                 cty.name = resultSet.getString("Name");
+                cty.population = resultSet.getInt("Population");
                 countries.add(cty);
             }
-            return countries;
+
+            //print header
+            System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
+            // Loop over all countries in the list
+            for (Country cty  : countries)
+            {
+                String cty_string = String.format("|%-10s|%-10s|",cty.name, cty.population);
+                System.out.println(cty_string);
+            }
         }
         catch (Exception e)
         {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries list");
-            return null;
         }
     }
+
+    /**
+     * The top N populated countries in the world where N is provided by the user
+     */
+    public void topCountriesWorldPop() {
+        try
+        {
+            Statement stmt = con.createStatement();
+
+            String strSelect = "SELECT Name,Population FROM country ORDER BY Population DESC LIMIT 10";
+
+            ResultSet resultSet = stmt.executeQuery(strSelect);
+
+            ArrayList<Country> countries = new ArrayList<>();
+            while (resultSet.next())
+            {
+                Country cty = new Country();
+                cty.name = resultSet.getString("Name");
+                cty.population = resultSet.getInt("Population");
+                countries.add(cty);
+            }
+
+            //print header
+            System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
+            // Loop over all countries in the list
+            for (Country cty  : countries)
+            {
+                String cty_string = String.format("|%-10s|%-10s|",cty.name, cty.population);
+                System.out.println(cty_string);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get countries list");
+        }
+    }
+
+
+
+    //CONTINENT
+    /**
+     * All the countries in a continent organised by largest population to smallest
+     */
+    public void countriesContinentPop() {
+        try
+        {
+            Statement stmt = con.createStatement();
+
+            String strSelect = "SELECT Name, Population FROM country WHERE Continent = 'North America' ORDER BY Population DESC";
+
+            ResultSet resultSet = stmt.executeQuery(strSelect);
+
+            ArrayList<Country> countries = new ArrayList<>();
+            while (resultSet.next())
+            {
+                Country cty = new Country();
+                cty.name = resultSet.getString("Name");
+                cty.population = resultSet.getInt("Population");
+                countries.add(cty);
+            }
+
+            //print header
+            System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
+            // Loop over all countries in the list
+            for (Country cty  : countries)
+            {
+                String cty_string = String.format("|%-10s|%-10s|",cty.name, cty.population);
+                System.out.println(cty_string);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get countries list");
+
+        }
+    }
+
+    /**
+     * The top N populated countries in a continent where N is provided by the user
+     */
+    public void topCountriesContinentPop() {
+        try
+        {
+            Statement stmt = con.createStatement();
+
+            String strSelect = "SELECT Name,Continent,Population FROM country WHERE Continent = 'North America' ORDER BY Population DESC LIMIT 10";
+
+            ResultSet resultSet = stmt.executeQuery(strSelect);
+
+            ArrayList<Country> countries = new ArrayList<>();
+            while (resultSet.next())
+            {
+                Country cty = new Country();
+                cty.continent = resultSet.getString("Continent");
+                cty.name = resultSet.getString("Name");
+                cty.population = resultSet.getInt("Population");
+                countries.add(cty);
+            }
+
+            //print header
+            System.out.println(String.format("|%-10s|%-10s|%-10s|", "Continent", "Name", "Population"));
+            // Loop over all countries in the list
+            for (Country cty  : countries)
+            {
+                String cty_string = String.format("|%-10s|%-10s|%-10s|",cty.continent, cty.name, cty.population);
+                System.out.println(cty_string);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get countries list");
+
+        }
+    }
+
+    //REGION
+    /**
+     * All the countries in a region organised by largest population to smallest
+     */
+    public void countriesRegionPop() {
+        try
+        {
+            Statement stmt = con.createStatement();
+
+            String strSelect = "SELECT Name,Region,Population FROM country WHERE Region = 'Southern Europe' ORDER BY Population DESC";
+
+            ResultSet resultSet = stmt.executeQuery(strSelect);
+
+            ArrayList<Country> countries = new ArrayList<>();
+            while (resultSet.next())
+            {
+                Country cty = new Country();
+                cty.name = resultSet.getString("Name");
+                cty.population = resultSet.getInt("Population");
+                cty.region = resultSet.getString("region");
+                countries.add(cty);
+            }
+
+            //print header
+            System.out.println(String.format("|%-10s|%-10s|%-10s|", "Region", "Name", "Population"));
+            // Loop over all countries in the list
+            for (Country cty  : countries)
+            {
+                String cty_string = String.format("|%-10s|%-10s|%-10s|",cty.region, cty.name, cty.population);
+                System.out.println(cty_string);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get countries list");
+
+        }
+    }
+
+
 
 }
