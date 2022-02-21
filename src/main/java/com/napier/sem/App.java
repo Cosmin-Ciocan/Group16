@@ -17,7 +17,7 @@ public class App
         // Connect to database
         a.connect();
 
-        a.countriesRegionPop();
+        a.topCountriesRegionPop();
 
         // Disconnect from database
         a.disconnect();
@@ -255,9 +255,9 @@ public class App
             while (resultSet.next())
             {
                 Country cty = new Country();
+                cty.region = resultSet.getString("Region");
                 cty.name = resultSet.getString("Name");
                 cty.population = resultSet.getInt("Population");
-                cty.region = resultSet.getString("region");
                 countries.add(cty);
             }
 
@@ -272,6 +272,41 @@ public class App
         }
         catch (Exception e)
         {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get countries list");
+
+        }
+    }
+
+
+    /**
+     * The top N populated countries in a region where N is provided by the user
+     */
+    public void topCountriesRegionPop() {
+        try {
+            Statement stmt = con.createStatement();
+
+            String strSelect = "SELECT Name,Region,Population FROM country WHERE Region = 'Southern Europe' ORDER BY Population DESC LIMIT 10";
+
+            ResultSet resultSet = stmt.executeQuery(strSelect);
+
+            ArrayList<Country> countries = new ArrayList<>();
+            while (resultSet.next()) {
+                Country cty = new Country();
+                cty.region = resultSet.getString("Region");
+                cty.name = resultSet.getString("Name");
+                cty.population = resultSet.getInt("Population");
+                countries.add(cty);
+            }
+
+            //print header
+            System.out.println(String.format("|%-10s|%-10s|%-10s|", "Region", "Name", "Population"));
+            // Loop over all countries in the list
+            for (Country cty : countries) {
+                String cty_string = String.format("|%-10s|%-10s|%-10s|", cty.region, cty.name, cty.population);
+                System.out.println(cty_string);
+            }
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries list");
 
