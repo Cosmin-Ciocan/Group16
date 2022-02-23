@@ -17,7 +17,7 @@ public class App
         // Connect to database
         a.connect();
 
-        a.cityContinentPop();
+        a.cityRegionPop();
 
         // Disconnect from database
         a.disconnect();
@@ -384,6 +384,45 @@ public class App
                 System.out.println(cty_string);
             }
         } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get countries list");
+
+        }
+    }
+
+    /**
+     * All the cities in a region organised by largest population to smallest
+     */
+    public void cityRegionPop() {
+        try
+        {
+            Statement stmt = con.createStatement();
+
+            String strSelect = "SELECT country.Region, city.Name, city.Population FROM country INNER JOIN city ON (country.Code = city.CountryCode) WHERE country.Region = 'Caribbean' ORDER BY city.Population DESC";
+
+            ResultSet resultSet = stmt.executeQuery(strSelect);
+
+            ArrayList<Country> countries = new ArrayList<>();
+            while (resultSet.next())
+            {
+                Country cty = new Country();
+                cty.region = resultSet.getString("Region");
+                cty.name = resultSet.getString("Name");
+                cty.population = resultSet.getInt("Population");
+                countries.add(cty);
+            }
+
+            //print header
+            System.out.println(String.format("|%-10s|%-10s|%-10s|", "Region", "Name", "Population"));
+            // Loop over all countries in the list
+            for (Country cty  : countries)
+            {
+                String cty_string = String.format("|%-10s|%-10s|%-10s|",cty.region, cty.name, cty.population);
+                System.out.println(cty_string);
+            }
+        }
+        catch (Exception e)
+        {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries list");
 
