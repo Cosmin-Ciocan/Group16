@@ -17,7 +17,7 @@ public class App
         // Connect to database
         a.connect();
 
-        a.cityRegionPop();
+        a.cityContinentPop();
 
         // Disconnect from database
         a.disconnect();
@@ -170,22 +170,22 @@ public class App
 
             ResultSet resultSet = stmt.executeQuery(strSelect);
 
-            ArrayList<Country> countries = new ArrayList<>();
+            ArrayList<City> cities = new ArrayList<>();
             while (resultSet.next())
             {
-                Country cty = new Country();
-                cty.name = resultSet.getString("Name");
-                cty.population = resultSet.getInt("Population");
-                countries.add(cty);
+                City city = new City();
+                city.name = resultSet.getString("Name");
+                city.population = resultSet.getInt("Population");
+                cities.add(city);
             }
 
             //print header
             System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
             // Loop over all countries in the list
-            for (Country cty  : countries)
+            for (City city : cities)
             {
-                String cty_string = String.format("|%-10s|%-10s|",cty.name, cty.population);
-                System.out.println(cty_string);
+                String city_string = String.format("|%-10s|%-10s|",city.name, city.population);
+                System.out.println(city_string);
             }
         }
         catch (Exception e)
@@ -197,7 +197,7 @@ public class App
 
 
 
-    //CONTINENT
+    //CONTINENT//
     /**
      * All the countries in a continent organised by largest population to smallest
      */
@@ -284,27 +284,27 @@ public class App
         {
             Statement stmt = con.createStatement();
 
-            String strSelect = "SELECT city.Name, city.Population, country.Continent FROM country INNER JOIN city ON (country.Code = city.CountryCode) WHERE Continent = 'North America' ORDER BY city.Population DESC";
+            String strSelect = "SELECT country.Continent, city.Name, city.Population FROM country INNER JOIN city ON (country.Code = city.CountryCode) WHERE Continent = 'North America' ORDER BY city.Population DESC";
 
             ResultSet resultSet = stmt.executeQuery(strSelect);
 
-            ArrayList<Country> countries = new ArrayList<>();
+            ArrayList<City> cities = new ArrayList<>();
             while (resultSet.next())
             {
-                Country cty = new Country();
-                cty.continent = resultSet.getString("Continent");
-                cty.name = resultSet.getString("Name");
-                cty.population = resultSet.getInt("Population");
-                countries.add(cty);
+                City city = new City();
+                city.continent = resultSet.getString("Continent");
+                city.name = resultSet.getString("Name");
+                city.population = resultSet.getInt("Population");
+                cities.add(city);
             }
 
             //print header
             System.out.println(String.format("|%-10s|%-10s|%-10s|", "Continent", "Name", "Population"));
             // Loop over all countries in the list
-            for (Country cty  : countries)
+            for (City city : cities)
             {
-                String cty_string = String.format("|%-10s|%-10s|%-10s|",cty.continent, cty.name, cty.population);
-                System.out.println(cty_string);
+                String city_string = String.format("|%-10s|%-10s|%-10s|",city.continent, city.name, city.population);
+                System.out.println(city_string);
             }
         }
         catch (Exception e)
@@ -315,7 +315,7 @@ public class App
         }
     }
 
-    //REGION
+    //REGION//
     /**
      * All the countries in a region organised by largest population to smallest
      */
@@ -402,22 +402,22 @@ public class App
 
             ResultSet resultSet = stmt.executeQuery(strSelect);
 
-            ArrayList<Country> countries = new ArrayList<>();
+            ArrayList<City> cities = new ArrayList<>();
             while (resultSet.next())
             {
-                Country cty = new Country();
-                cty.region = resultSet.getString("Region");
-                cty.name = resultSet.getString("Name");
-                cty.population = resultSet.getInt("Population");
-                countries.add(cty);
+                City city = new City();
+                city.region = resultSet.getString("Region");
+                city.name = resultSet.getString("Name");
+                city.population = resultSet.getInt("Population");
+                cities.add(city);
             }
 
             //print header
             System.out.println(String.format("|%-10s|%-10s|%-10s|", "Region", "Name", "Population"));
             // Loop over all countries in the list
-            for (Country cty  : countries)
+            for (City city :  cities)
             {
-                String cty_string = String.format("|%-10s|%-10s|%-10s|",cty.region, cty.name, cty.population);
+                String cty_string = String.format("|%-10s|%-10s|%-10s|",city.region, city.name, city.population);
                 System.out.println(cty_string);
             }
         }
@@ -428,7 +428,5 @@ public class App
 
         }
     }
-
-
 
 }
