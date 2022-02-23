@@ -17,7 +17,7 @@ public class App
         // Connect to database
         a.connect();
 
-        a.cityWorldPop();
+        a.cityContinentPop();
 
         // Disconnect from database
         a.disconnect();
@@ -245,6 +245,46 @@ public class App
             Statement stmt = con.createStatement();
 
             String strSelect = "SELECT Name,Continent,Population FROM country WHERE Continent = 'North America' ORDER BY Population DESC LIMIT 10";
+
+            ResultSet resultSet = stmt.executeQuery(strSelect);
+
+            ArrayList<Country> countries = new ArrayList<>();
+            while (resultSet.next())
+            {
+                Country cty = new Country();
+                cty.continent = resultSet.getString("Continent");
+                cty.name = resultSet.getString("Name");
+                cty.population = resultSet.getInt("Population");
+                countries.add(cty);
+            }
+
+            //print header
+            System.out.println(String.format("|%-10s|%-10s|%-10s|", "Continent", "Name", "Population"));
+            // Loop over all countries in the list
+            for (Country cty  : countries)
+            {
+                String cty_string = String.format("|%-10s|%-10s|%-10s|",cty.continent, cty.name, cty.population);
+                System.out.println(cty_string);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get countries list");
+
+        }
+    }
+
+
+    /**
+     * All the cities in a continent organised by largest population to smallest.
+     */
+    public void cityContinentPop() {
+        try
+        {
+            Statement stmt = con.createStatement();
+
+            String strSelect = "SELECT city.Name, city.Population, country.Continent FROM country INNER JOIN city ON (country.Code = city.CountryCode) WHERE Continent = 'North America' ORDER BY city.Population DESC";
 
             ResultSet resultSet = stmt.executeQuery(strSelect);
 
