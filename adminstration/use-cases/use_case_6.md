@@ -1,4 +1,4 @@
-# USE CASE: 1  Produce report of a country
+# USE CASE: 6 Produce report of a country
 
 ## CHARACTERISTIC INFORMATION
 
