@@ -47,9 +47,9 @@ public class App
             try
             {
                 // Wait a bit for db to start
-                Thread.sleep(0);
+                Thread.sleep(8000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             }
@@ -404,7 +404,7 @@ public class App
             ArrayList<City> cities = new ArrayList<>();
             while (resultSet.next())
             {
-                City city = new City();;
+                City city = new City();
                 city.name = resultSet.getString("Name");
                 city.population = resultSet.getInt("Population");
                 cities.add(city);
