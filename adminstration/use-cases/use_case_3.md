@@ -1,4 +1,4 @@
-# USE CASE: 1  Produce a population report of a country
+# USE CASE: 3 Produce a population report of a country
 
 ## CHARACTERISTIC INFORMATION
 

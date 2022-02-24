@@ -1,4 +1,4 @@
-# USE CASE: 1  Produce report of a capital city
+# USE CASE: 4  Produce report of a capital city
 
 ## CHARACTERISTIC INFORMATION
 
