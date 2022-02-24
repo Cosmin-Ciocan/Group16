@@ -47,9 +47,9 @@ public class App
             try
             {
                 // Wait a bit for db to start
-                Thread.sleep(8000);
+                Thread.sleep(0);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             }
@@ -284,7 +284,7 @@ public class App
         {
             Statement stmt = con.createStatement();
 
-            String strSelect = "SELECT country.Continent, city.Name, city.Population FROM country INNER JOIN city ON (country.Code = city.CountryCode) WHERE Continent = 'North America' ORDER BY city.Population DESC";
+            String strSelect = "SELECT city.Name, city.Population FROM country INNER JOIN city ON (country.Code = city.CountryCode) WHERE Continent = 'North America' ORDER BY city.Population DESC";
 
             ResultSet resultSet = stmt.executeQuery(strSelect);
 
@@ -292,18 +292,17 @@ public class App
             while (resultSet.next())
             {
                 City city = new City();
-                city.continent = resultSet.getString("Continent");
                 city.name = resultSet.getString("Name");
                 city.population = resultSet.getInt("Population");
                 cities.add(city);
             }
 
             //print header
-            System.out.println(String.format("|%-10s|%-10s|%-10s|", "Continent", "Name", "Population"));
+            System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
             // Loop over all countries in the list
             for (City city : cities)
             {
-                String city_string = String.format("|%-10s|%-10s|%-10s|",city.continent, city.name, city.population);
+                String city_string = String.format("|%-10s|%-10s|", city.name, city.population);
                 System.out.println(city_string);
             }
         }
@@ -398,26 +397,25 @@ public class App
         {
             Statement stmt = con.createStatement();
 
-            String strSelect = "SELECT country.Region, city.Name, city.Population FROM country INNER JOIN city ON (country.Code = city.CountryCode) WHERE country.Region = 'Caribbean' ORDER BY city.Population DESC";
+            String strSelect = "SELECT city.Name, city.Population FROM country INNER JOIN city ON (country.Code = city.CountryCode) WHERE country.Region = 'Caribbean' ORDER BY city.Population DESC";
 
             ResultSet resultSet = stmt.executeQuery(strSelect);
 
             ArrayList<City> cities = new ArrayList<>();
             while (resultSet.next())
             {
-                City city = new City();
-                city.region = resultSet.getString("Region");
+                City city = new City();;
                 city.name = resultSet.getString("Name");
                 city.population = resultSet.getInt("Population");
                 cities.add(city);
             }
 
             //print header
-            System.out.println(String.format("|%-10s|%-10s|%-10s|", "Region", "Name", "Population"));
+            System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
             // Loop over all countries in the list
             for (City city :  cities)
             {
-                String cty_string = String.format("|%-10s|%-10s|%-10s|",city.region, city.name, city.population);
+                String cty_string = String.format("|%-10s|%-10s|", city.name, city.population);
                 System.out.println(cty_string);
             }
         }

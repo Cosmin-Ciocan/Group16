@@ -21,19 +21,4 @@ public class City
      * City Population
      */
     public Integer population;
-
-    /**
-     * City Continent
-     */
-    public String continent;
-
-    /**
-     * City Region
-     */
-    public String region;
-
-    /**
-     * City Country
-     */
-    public String country;
 }
