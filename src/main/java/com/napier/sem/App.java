@@ -17,7 +17,7 @@ public class App
         // Connect to database
         a.connect();
 
-        a.topCitiesWorldPop();
+        a.tpoCitiesContinentPop();
 
         // Disconnect from database
         a.disconnect();
@@ -339,6 +339,44 @@ public class App
             {
                 String city_string = String.format("|%-10s|%-10s|", city.name, city.population);
                 System.out.println(city_string);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get countries list");
+
+        }
+    }
+
+    /**
+     * The top N populated cities in a continent where N is provided by the user.
+     */
+    public void tpoCitiesContinentPop() {
+        try
+        {
+            Statement stmt = con.createStatement();
+
+            String strSelect = " SELECT city.Name, city.Population FROM country INNER JOIN city ON (country.Code = city.CountryCode) WHERE Continent = 'North America' ORDER BY city.Population DESC LIMIT 3";
+
+            ResultSet resultSet = stmt.executeQuery(strSelect);
+
+            ArrayList<City> cities = new ArrayList<>();
+            while (resultSet.next())
+            {
+                City city = new City();
+                city.name = resultSet.getString("Name");
+                city.population = resultSet.getInt("Population");
+                cities.add(city);
+            }
+
+            //print header
+            System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
+            // Loop over all countries in the list
+            for (City city : cities)
+            {
+                String cty_string = String.format("|%-10s|%-10s|",city.name, city.population);
+                System.out.println(cty_string);
             }
         }
         catch (Exception e)
