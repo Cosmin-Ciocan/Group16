@@ -17,7 +17,7 @@ public class App
         // Connect to database
         a.connect();
 
-        a.topCitiesCountryPop();
+        a.topCitiesDistrictPop();
 
         // Disconnect from database
         a.disconnect();
@@ -625,6 +625,45 @@ public class App
             Statement stmt = con.createStatement();
 
             String strSelect = "SELECT District,Name,Population FROM city WHERE District = 'Adana'";
+
+            ResultSet resultSet = stmt.executeQuery(strSelect);
+
+            ArrayList<City> cities = new ArrayList<>();
+            while (resultSet.next())
+            {
+                City city = new City();
+                city.district = resultSet.getString("District");
+                city.name = resultSet.getString("Name");
+                city.population = resultSet.getInt("Population");
+                cities.add(city);
+            }
+
+            //print header
+            System.out.println(String.format("|%-10s|%-10s|%-10s|", "District", "Name", "Population"));
+            // Loop over all countries in the list
+            for (City city :  cities)
+            {
+                String cty_string = String.format("|%-10s|%-10s|%-10s|", city.district, city.name, city.population);
+                System.out.println(cty_string);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get countries list");
+
+        }
+    }
+
+    /**
+     * The top N populated cities in a district where N is provided by the user.
+     */
+    public void topCitiesDistrictPop() {
+        try
+        {
+            Statement stmt = con.createStatement();
+
+            String strSelect = "SELECT Name,Population,District FROM city WHERE District = 'Adana' LIMIT 3";
 
             ResultSet resultSet = stmt.executeQuery(strSelect);
 
