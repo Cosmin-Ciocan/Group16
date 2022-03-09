@@ -830,7 +830,7 @@ public class App {
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get countries list");
+            System.out.println("Failed to get countryLanguage");
 
         }
 
