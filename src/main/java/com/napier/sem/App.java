@@ -814,8 +814,8 @@ public class App {
 
             ResultSet resultSet = stmt.executeQuery(strSelect);
 
-            ArrayList<City> cities = new ArrayList<>();
             CountryLanguage countryLanguage = new CountryLanguage();
+
             while (resultSet.next()) {
                 countryLanguage.language = resultSet.getString("Language");
                 countryLanguage.isOfficial = resultSet.getBoolean("IsOfficial");
@@ -831,9 +831,7 @@ public class App {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countryLanguage");
-
         }
-
         return null;
     }
 
