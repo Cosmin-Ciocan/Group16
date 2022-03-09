@@ -806,7 +806,7 @@ public class App {
     /**
      * The spoken language in a country where countryCode is provided by the user.
      */
-    public CountryLanguage getCountryLanguage(String countryCode) {
+    public void getCountryLanguage(String countryCode) {
         try {
             Statement stmt = con.createStatement();
 
@@ -832,7 +832,6 @@ public class App {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countryLanguage");
         }
-        return null;
     }
 
 }
