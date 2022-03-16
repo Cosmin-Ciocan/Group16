@@ -67,6 +67,31 @@ public class App {
         }
     }
 
+    // PRINTERS //
+
+    public void cityPrinter(ArrayList<City> cities){
+        //print header
+        System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
+        // Loop over all countries in the list
+        for (City city : cities) {
+            String city_string = String.format("|%-10s|%-10s|", city.name, city.population);
+            System.out.println(city_string);
+        }
+    }
+
+    public void countryPrinter(ArrayList<Country> countries){
+
+        //print header
+        System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
+        // Loop over all countries in the list
+        for (Country cty : countries) {
+            String cty_string = String.format("|%-10s|%-10s|", cty.name, cty.population);
+            System.out.println(cty_string);
+        }
+    }
+
+
+
     // WORLD //
 
     /**
@@ -87,14 +112,7 @@ public class App {
                 cty.population = resultSet.getInt("Population");
                 countries.add(cty);
             }
-
-            //print header
-            System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
-            // Loop over all countries in the list
-            for (Country cty : countries) {
-                String cty_string = String.format("|%-10s|%-10s|", cty.name, cty.population);
-                System.out.println(cty_string);
-            }
+            countryPrinter(countries);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries list");
@@ -119,14 +137,7 @@ public class App {
                 cty.population = resultSet.getInt("Population");
                 countries.add(cty);
             }
-
-            //print header
-            System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
-            // Loop over all countries in the list
-            for (Country cty : countries) {
-                String cty_string = String.format("|%-10s|%-10s|", cty.name, cty.population);
-                System.out.println(cty_string);
-            }
+            countryPrinter(countries);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries list");
@@ -151,14 +162,7 @@ public class App {
                 city.population = resultSet.getInt("Population");
                 cities.add(city);
             }
-
-            //print header
-            System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
-            // Loop over all countries in the list
-            for (City city : cities) {
-                String city_string = String.format("|%-10s|%-10s|", city.name, city.population);
-                System.out.println(city_string);
-            }
+            cityPrinter(cities);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries list");
@@ -183,14 +187,7 @@ public class App {
                 city.population = resultSet.getInt("Population");
                 cities.add(city);
             }
-
-            //print header
-            System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
-            // Loop over all countries in the list
-            for (City city : cities) {
-                String cty_string = String.format("|%-10s|%-10s|", city.name, city.population);
-                System.out.println(cty_string);
-            }
+            cityPrinter(cities);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries list");
@@ -215,14 +212,7 @@ public class App {
                 city.population = resultSet.getInt("Population");
                 cities.add(city);
             }
-
-            //print header
-            System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
-            // Loop over all countries in the list
-            for (City city : cities) {
-                String city_string = String.format("|%-10s|%-10s|", city.name, city.population);
-                System.out.println(city_string);
-            }
+            cityPrinter(cities);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries list");
@@ -247,14 +237,7 @@ public class App {
                 city.population = resultSet.getInt("Population");
                 cities.add(city);
             }
-
-            //print header
-            System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
-            // Loop over all countries in the list
-            for (City city : cities) {
-                String city_string = String.format("|%-10s|%-10s|", city.name, city.population);
-                System.out.println(city_string);
-            }
+            cityPrinter(cities);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries list");
@@ -281,14 +264,7 @@ public class App {
                 cty.population = resultSet.getInt("Population");
                 countries.add(cty);
             }
-
-            //print header
-            System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
-            // Loop over all countries in the list
-            for (Country cty : countries) {
-                String cty_string = String.format("|%-10s|%-10s|", cty.name, cty.population);
-                System.out.println(cty_string);
-            }
+            countryPrinter(countries);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries list");
@@ -315,14 +291,7 @@ public class App {
                 cty.population = resultSet.getInt("Population");
                 countries.add(cty);
             }
-
-            //print header
-            System.out.println(String.format("|%-10s|%-10s|%-10s|", "Continent", "Name", "Population"));
-            // Loop over all countries in the list
-            for (Country cty : countries) {
-                String cty_string = String.format("|%-10s|%-10s|%-10s|", cty.continent, cty.name, cty.population);
-                System.out.println(cty_string);
-            }
+            countryPrinter(countries);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries list");
@@ -349,14 +318,7 @@ public class App {
                 city.population = resultSet.getInt("Population");
                 cities.add(city);
             }
-
-            //print header
-            System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
-            // Loop over all countries in the list
-            for (City city : cities) {
-                String city_string = String.format("|%-10s|%-10s|", city.name, city.population);
-                System.out.println(city_string);
-            }
+            cityPrinter(cities);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries list");
@@ -382,14 +344,7 @@ public class App {
                 city.population = resultSet.getInt("Population");
                 cities.add(city);
             }
-
-            //print header
-            System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
-            // Loop over all countries in the list
-            for (City city : cities) {
-                String cty_string = String.format("|%-10s|%-10s|", city.name, city.population);
-                System.out.println(cty_string);
-            }
+            cityPrinter(cities);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries list");
@@ -415,14 +370,7 @@ public class App {
                 city.population = resultSet.getInt("Population");
                 cities.add(city);
             }
-
-            //print header
-            System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
-            // Loop over all countries in the list
-            for (City city : cities) {
-                String city_string = String.format("|%-10s|%-10s|", city.name, city.population);
-                System.out.println(city_string);
-            }
+            cityPrinter(cities);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries list");
@@ -448,14 +396,7 @@ public class App {
                 city.population = resultSet.getInt("Population");
                 cities.add(city);
             }
-
-            //print header
-            System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
-            // Loop over all countries in the list
-            for (City city : cities) {
-                String city_string = String.format("|%-10s|%-10s|", city.name, city.population);
-                System.out.println(city_string);
-            }
+            cityPrinter(cities);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries list");
@@ -472,26 +413,18 @@ public class App {
         try {
             Statement stmt = con.createStatement();
 
-            String strSelect = "SELECT Name,Region,Population FROM country WHERE Region = 'Southern Europe' ORDER BY Population DESC";
+            String strSelect = "SELECT Name,Population FROM country WHERE Region = 'Southern Europe' ORDER BY Population DESC";
 
             ResultSet resultSet = stmt.executeQuery(strSelect);
 
             ArrayList<Country> countries = new ArrayList<>();
             while (resultSet.next()) {
                 Country cty = new Country();
-                cty.region = resultSet.getString("Region");
                 cty.name = resultSet.getString("Name");
                 cty.population = resultSet.getInt("Population");
                 countries.add(cty);
             }
-
-            //print header
-            System.out.println(String.format("|%-10s|%-10s|%-10s|", "Region", "Name", "Population"));
-            // Loop over all countries in the list
-            for (Country cty : countries) {
-                String cty_string = String.format("|%-10s|%-10s|%-10s|", cty.region, cty.name, cty.population);
-                System.out.println(cty_string);
-            }
+            countryPrinter(countries);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries list");
@@ -552,14 +485,7 @@ public class App {
                 city.population = resultSet.getInt("Population");
                 cities.add(city);
             }
-
-            //print header
-            System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
-            // Loop over all countries in the list
-            for (City city : cities) {
-                String cty_string = String.format("|%-10s|%-10s|", city.name, city.population);
-                System.out.println(cty_string);
-            }
+            cityPrinter(cities);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries list");
@@ -585,14 +511,7 @@ public class App {
                 city.population = resultSet.getInt("Population");
                 cities.add(city);
             }
-
-            //print header
-            System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
-            // Loop over all countries in the list
-            for (City city : cities) {
-                String cty_string = String.format("|%-10s|%-10s|", city.name, city.population);
-                System.out.println(cty_string);
-            }
+            cityPrinter(cities);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries list");
@@ -618,14 +537,7 @@ public class App {
                 city.population = resultSet.getInt("Population");
                 cities.add(city);
             }
-
-            //print header
-            System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
-            // Loop over all countries in the list
-            for (City city : cities) {
-                String cty_string = String.format("|%-10s|%-10s|", city.name, city.population);
-                System.out.println(cty_string);
-            }
+            cityPrinter(cities);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries list");
@@ -651,14 +563,7 @@ public class App {
                 city.population = resultSet.getInt("Population");
                 cities.add(city);
             }
-
-            //print header
-            System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
-            // Loop over all countries in the list
-            for (City city : cities) {
-                String cty_string = String.format("|%-10s|%-10s|", city.name, city.population);
-                System.out.println(cty_string);
-            }
+            cityPrinter(cities);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries list");
@@ -686,14 +591,7 @@ public class App {
                 city.population = resultSet.getInt("Population");
                 cities.add(city);
             }
-
-            //print header
-            System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
-            // Loop over all countries in the list
-            for (City city : cities) {
-                String cty_string = String.format("|%-10s|%-10s|", city.name, city.population);
-                System.out.println(cty_string);
-            }
+            cityPrinter(cities);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries list");
@@ -719,14 +617,7 @@ public class App {
                 city.population = resultSet.getInt("Population");
                 cities.add(city);
             }
-
-            //print header
-            System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
-            // Loop over all countries in the list
-            for (City city : cities) {
-                String cty_string = String.format("|%-10s|%-10s|", city.name, city.population);
-                System.out.println(cty_string);
-            }
+            cityPrinter(cities);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries list");
@@ -755,14 +646,7 @@ public class App {
                 city.population = resultSet.getInt("Population");
                 cities.add(city);
             }
-
-            //print header
-            System.out.println(String.format("|%-10s|%-10s|%-10s|", "District", "Name", "Population"));
-            // Loop over all countries in the list
-            for (City city : cities) {
-                String cty_string = String.format("|%-10s|%-10s|%-10s|", city.district, city.name, city.population);
-                System.out.println(cty_string);
-            }
+            cityPrinter(cities);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries list");
@@ -789,14 +673,7 @@ public class App {
                 city.population = resultSet.getInt("Population");
                 cities.add(city);
             }
-
-            //print header
-            System.out.println(String.format("|%-10s|%-10s|%-10s|", "District", "Name", "Population"));
-            // Loop over all countries in the list
-            for (City city : cities) {
-                String cty_string = String.format("|%-10s|%-10s|%-10s|", city.district, city.name, city.population);
-                System.out.println(cty_string);
-            }
+            cityPrinter(cities);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries list");
