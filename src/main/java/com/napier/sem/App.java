@@ -70,10 +70,21 @@ public class App {
     // PRINTERS //
 
     public void cityPrinter(ArrayList<City> cities){
+
+        // Check cities is not null
+        if (cities == null)
+        {
+            System.out.println("No cities");
+            return;
+        }
+
         //print header
         System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
         // Loop over all countries in the list
         for (City city : cities) {
+            if (city == null)
+                continue;
+
             String city_string = String.format("|%-10s|%-10s|", city.name, city.population);
             System.out.println(city_string);
         }
