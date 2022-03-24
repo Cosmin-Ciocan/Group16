@@ -72,6 +72,10 @@ public class App {
 
     // PRINTERS //
 
+    /**
+     * All the countries in the world organised by largest population to smallest.
+     * @param cities City list
+     */
     public void cityPrinter(ArrayList<City> cities){
 
         // Check cities is not null
