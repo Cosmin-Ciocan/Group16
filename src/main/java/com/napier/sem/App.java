@@ -105,6 +105,28 @@ public class App {
     }
 
 
+    // Basic methods //
+
+    public City getCity(String cityName){
+        City city = new City();
+        try {
+            Statement stmt = con.createStatement();
+
+            String strSelect = "SELECT Name, CountryCode, District, Population FROM `country` WHERE Name = '" + cityName + "'";
+
+            ResultSet resultSet = stmt.executeQuery(strSelect);
+            city.name = resultSet.getString("Name");
+            city.countryCode = resultSet.getString("CountryCode");
+            city.district = resultSet.getString("District");
+            city.population = resultSet.getInt("Population");
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city");
+        }
+        return city;
+    }
+
 
     // WORLD //
 
