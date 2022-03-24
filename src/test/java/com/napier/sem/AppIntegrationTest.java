@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
         static void init()
         {
             app = new App();
-            app.connect("localhost:33060", 30000);
+            app.connect("localhost:33060", 0);
 
         }
 

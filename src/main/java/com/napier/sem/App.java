@@ -12,7 +12,7 @@ public class App {
         App a = new App();
 
         if(args.length < 1){
-            a.connect("localhost:33060", 30000);
+            a.connect("localhost:33060", 0);
         }else{
             a.connect(args[0], Integer.parseInt(args[1]));
         }
@@ -44,7 +44,7 @@ public class App {
                 // Wait a bit for db to start
                 Thread.sleep(delay);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://"+ location + "/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             } catch (SQLException sqle) {
@@ -112,13 +112,15 @@ public class App {
         try {
             Statement stmt = con.createStatement();
 
-            String strSelect = "SELECT Name, CountryCode, District, Population FROM `country` WHERE Name = '" + cityName + "'";
+            String strSelect = "SELECT Name, CountryCode, District, Population FROM `city` WHERE Name = '" + cityName + "'";
 
             ResultSet resultSet = stmt.executeQuery(strSelect);
-            city.name = resultSet.getString("Name");
-            city.countryCode = resultSet.getString("CountryCode");
-            city.district = resultSet.getString("District");
-            city.population = resultSet.getInt("Population");
+            while (resultSet.next()) {
+                city.name = resultSet.getString("Name");
+                city.countryCode = resultSet.getString("CountryCode");
+                city.district = resultSet.getString("District");
+                city.population = resultSet.getInt("Population");
+            }
         }
         catch (Exception e){
             System.out.println(e.getMessage());
