@@ -17,7 +17,7 @@ public class App {
             a.connect(args[0], Integer.parseInt(args[1]));
         }
 
-        a.countriesWorldPop();
+        a.topCountriesWorldPop();
 
         // Disconnect from database
         a.disconnect();
@@ -108,6 +108,22 @@ public class App {
         }
     }
 
+    // Lister //
+
+     public  ArrayList<City> cityLister(ResultSet resultSet) throws SQLException {
+
+         ArrayList<City> cities = new ArrayList<>();
+         while (resultSet.next()) {
+             City city = new City();
+             city.name = resultSet.getString("Name");
+             city.population = resultSet.getInt("Population");
+             city.countryCode = resultSet.getString("CountryCode");
+             city.district = resultSet.getString("District");
+             cities.add(city);
+         }
+         return cities;
+     }
+
 
     // Basic methods //
 
@@ -143,7 +159,7 @@ public class App {
         try {
             Statement stmt = con.createStatement();
 
-            String strSelect = "SELECT Name, Population FROM `country` ORDER BY Population DESC";
+            String strSelect = "SELECT * FROM `country` ORDER BY Population DESC";
 
             ResultSet resultSet = stmt.executeQuery(strSelect);
 
@@ -168,7 +184,7 @@ public class App {
         try {
             Statement stmt = con.createStatement();
 
-            String strSelect = "SELECT Name,Population FROM country ORDER BY Population DESC LIMIT 10";
+            String strSelect = "SELECT * FROM country ORDER BY Population DESC LIMIT 10";
 
             ResultSet resultSet = stmt.executeQuery(strSelect);
 
