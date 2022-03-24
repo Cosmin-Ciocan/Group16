@@ -234,7 +234,7 @@ public class App {
     }
 
     /**
-     * The top N populated capital cities in the world where N is provided by the user.
+     * The top N populated capital cities in the world where N is provided by the users.
      */
     public void topCapitalCitiesWorldPop() {
         try {
