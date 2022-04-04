@@ -141,7 +141,6 @@ public class App {
     }
 
     // PRINTERS //
-
     /**
      * @param cities City list
      */
@@ -168,17 +167,25 @@ public class App {
 
     public void countryPrinter(ArrayList<Country> countries){
 
+        if(countries == null)
+        {
+            System.out.println("No countries");
+            return;
+        }
         //print header
         System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
         // Loop over all countries in the list
         for (Country cty : countries) {
+            if(cty == null)
+            {
+                continue;
+            }
             String cty_string = String.format("|%-10s|%-10s|", cty.name, cty.population);
             System.out.println(cty_string);
         }
     }
 
     // Lister //
-
     /**
      *
      * @param resultSet Result of the SQL request
@@ -232,7 +239,6 @@ public class App {
 
 
     // Basic methods //
-
     public City getCity(String cityName){
         City city = new City();
         try {
@@ -256,8 +262,8 @@ public class App {
     }
 
 
-    public ResultSet databaseRequester (String Query){
-
+    public ResultSet databaseRequester (String Query)
+    {
         ResultSet resultSet;
 
         try {
@@ -276,7 +282,8 @@ public class App {
     /**
      * The spoken language in a country where countryCode is provided by the user.
      */
-    public void getCountryLanguage(String countryCode) {
+    public void getCountryLanguage(String countryCode)
+    {
         try {
             Statement stmt = con.createStatement();
 
