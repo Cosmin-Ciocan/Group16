@@ -143,7 +143,6 @@ public class App {
     // PRINTERS //
 
     /**
-     *
      * @param cities City list
      */
     public void cityPrinter(ArrayList<City> cities){
