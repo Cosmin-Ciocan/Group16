@@ -85,7 +85,7 @@ public class App {
             a.connect(args[0], Integer.parseInt(args[1]));
         }
 
-        ResultSet resultSet = a.databaseRequester(a.countriesWorldPop);
+        ResultSet resultSet = a.databaseRequester(a.topCountriesWorldPop);
         ArrayList<Country> countries = a.countryLister(resultSet);
         a.countryPrinter(countries);
 
