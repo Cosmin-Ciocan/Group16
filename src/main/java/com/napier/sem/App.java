@@ -15,64 +15,70 @@ public class App {
     String topCountriesWorldPop = "SELECT * FROM country ORDER BY Population DESC LIMIT 10";
 
     // All the cities in the world organised by largest population to smallest
-    String cityWorldPop = "SELECT Name,Population FROM city ORDER BY Population DESC ";
+    String cityWorldPop = "SELECT * FROM city ORDER BY Population DESC ";
 
     // The top N populated cities in the world where N is provided by the user.
-    String topCitiesWorldPop = "SELECT Name,Population FROM city ORDER BY Population DESC LIMIT 10";
+    String topCitiesWorldPop = "SELECT * FROM city ORDER BY Population DESC LIMIT 10";
 
     // All the capital cities in the world organised by largest population to smallest
-    String capitalCitiesWorldPop = "SELECT city.Name, city.Population FROM country INNER JOIN city ON (country.Code = city.CountryCode) WHERE (country.Capital = city.ID)  ORDER BY city.Population DESC ";
+    String capitalCitiesWorldPop = "SELECT * FROM city INNER JOIN country ON (country.Code = city.CountryCode) WHERE (country.Capital = city.ID)  ORDER BY city.Population DESC ";
 
     // The top N populated capital cities in the world where N is provided by the users.
-    String topCapitalCitiesWorldPop = "SELECT city.Name, city.Population FROM country INNER JOIN city ON (country.Code = city.CountryCode) WHERE (country.Capital = city.ID)  ORDER BY city.Population DESC LIMIT 10";
+    String topCapitalCitiesWorldPop = "SELECT * FROM city INNER JOIN country ON (country.Code = city.CountryCode) WHERE (country.Capital = city.ID)  ORDER BY city.Population DESC LIMIT 10";
 
     // All the countries in a continent organised by largest population to smallest
-    String countriesContinentPop = "SELECT Name, Population FROM country WHERE Continent = 'North America' ORDER BY Population DESC";
+    String countriesContinentPop = "SELECT * FROM country WHERE Continent = 'North America' ORDER BY Population DESC";
 
     // The top N populated countries in a continent where N is provided by the user
-    String topCountriesContinentPop = "SELECT Name,Continent,Population FROM country WHERE Continent = 'North America' ORDER BY Population DESC LIMIT 10";
+    String topCountriesContinentPop = "SELECT * FROM country WHERE Continent = 'North America' ORDER BY Population DESC LIMIT 10";
 
     // All the cities in a continent organised by largest population to smallest.
-    String cityContinentPop = "SELECT city.Name, city.Population FROM country INNER JOIN city ON (country.Code = city.CountryCode) WHERE Continent = 'North America' ORDER BY city.Population DESC";
+    String cityContinentPop = "SELECT * FROM city INNER JOIN country ON (country.Code = city.CountryCode) WHERE Continent = 'North America' ORDER BY city.Population DESC";
 
     // The top N populated cities in a continent where N is provided by the user.
-    String topCitiesContinentPop = "SELECT city.Name, city.Population FROM country INNER JOIN city ON (country.Code = city.CountryCode) WHERE Continent = 'North America' ORDER BY city.Population DESC LIMIT 3";
+    String topCitiesContinentPop = "SELECT * FROM city INNER JOIN country ON (country.Code = city.CountryCode) WHERE Continent = 'North America' ORDER BY city.Population DESC LIMIT 3";
 
     // All the capital cities in a continent organised by largest population to smallest.
-    String capitalCitiesContinentPop = "SELECT city.Name, city.Population FROM country INNER JOIN city ON (country.Code = city.CountryCode) WHERE (country.Capital = city.ID) AND (country.Continent = 'North America')  ORDER BY city.Population DESC";
+    String capitalCitiesContinentPop = "SELECT * FROM city INNER JOIN country ON (country.Code = city.CountryCode) WHERE (country.Capital = city.ID) AND (country.Continent = 'North America')  ORDER BY city.Population DESC";
 
     // The top N populated capital cities in a continent where N is provided by the user.
-    String topCapitalCitiesContinentPop = "SELECT city.Name, city.Population FROM country INNER JOIN city ON (country.Code = city.CountryCode) WHERE (country.Capital = city.ID) AND (country.Continent = 'North America')  ORDER BY city.Population DESC LIMIT 10";
+    String topCapitalCitiesContinentPop = "SELECT * FROM city INNER JOIN country ON (country.Code = city.CountryCode) WHERE (country.Capital = city.ID) AND (country.Continent = 'North America')  ORDER BY city.Population DESC LIMIT 10";
 
     // All the countries in a region organised by largest population to smallest
-    String countriesRegionPop = "SELECT Name,Population FROM country WHERE Region = 'Southern Europe' ORDER BY Population DESC";
+    String countriesRegionPop = "SELECT * FROM country WHERE Region = 'Southern Europe' ORDER BY Population DESC";
 
     // The top N populated countries in a region where N is provided by the user
-    String topCountriesRegionPop = "SELECT Name,Region,Population FROM country WHERE Region = 'Southern Europe' ORDER BY Population DESC LIMIT 10";
+    String topCountriesRegionPop = "SELECT * FROM country WHERE Region = 'Southern Europe' ORDER BY Population DESC LIMIT 10";
 
     // All the cities in a region organised by largest population to smallest
-    String cityRegionPop = "SELECT city.Name, city.Population FROM country INNER JOIN city ON (country.Code = city.CountryCode) WHERE country.Region = 'Caribbean' ORDER BY city.Population DESC";
+    String cityRegionPop = "SELECT * FROM city INNER JOIN country ON (country.Code = city.CountryCode) WHERE country.Region = 'Caribbean' ORDER BY city.Population DESC";
 
     // The top N populated cities in a region where N is provided by the user.
-    String topCitiesRegionPop = "SELECT city.Name, city.Population FROM country INNER JOIN city ON (country.Code = city.CountryCode) WHERE country.Region = 'Caribbean' ORDER BY city.Population DESC LIMIT 3";
+    String topCitiesRegionPop = "SELECT * FROM city INNER JOIN country ON (country.Code = city.CountryCode) WHERE country.Region = 'Caribbean' ORDER BY city.Population DESC LIMIT 3";
 
     // All the capital cities in a region organised by largest to smallest.
-    String capitalCitiesRegionPop = "SELECT city.Name, city.Population FROM country INNER JOIN city ON (country.Code = city.CountryCode) WHERE (country.Capital = city.ID) AND (country.Region = 'Caribbean') ORDER BY city.Population DESC";
+    String capitalCitiesRegionPop = "SELECT * FROM city INNER JOIN country ON (country.Code = city.CountryCode) WHERE (country.Capital = city.ID) AND (country.Region = 'Caribbean') ORDER BY city.Population DESC";
 
     // The top N populated capital cities in a region where N is provided by the user.
-    String topCapitalCitiesRegionPop = "SELECT city.Name, city.Population FROM country INNER JOIN city ON (country.Code = city.CountryCode) WHERE (country.Capital = city.ID) AND (country.Region = 'Caribbean') ORDER BY city.Population DESC LIMIT 3";
+    String topCapitalCitiesRegionPop = "SELECT * FROM city INNER JOIN country ON (country.Code = city.CountryCode) WHERE (country.Capital = city.ID) AND (country.Region = 'Caribbean') ORDER BY city.Population DESC LIMIT 3";
 
     // All the cities in a country organised by largest population to smallest
-    String cityCountryPop = "SELECT city.Name, city.Population FROM country INNER JOIN city ON (country.Code = city.CountryCode) WHERE country.Name = 'France' ORDER BY city.Population DESC";
+    String cityCountryPop = "SELECT * FROM city INNER JOIN country ON (country.Code = city.CountryCode) WHERE country.Name = 'France' ORDER BY city.Population DESC";
 
     // The top N populated cities in a country where N is provided by the user.
-    String topCitiesCountryPop = "SELECT city.Name, city.Population FROM country INNER JOIN city ON (country.Code = city.CountryCode) WHERE country.Name = 'France' ORDER BY city.Population DESC LIMIT 3";
+    String topCitiesCountryPop = "SELECT * FROM city INNER JOIN country ON (country.Code = city.CountryCode) WHERE country.Name = 'France' ORDER BY city.Population DESC LIMIT 3";
 
     // All the cities in a district organised by largest population to smallest
-    String cityDistrictPop = "SELECT District,Name,Population FROM city WHERE District = 'Adana'";
+    String cityDistrictPop = "SELECT * FROM city WHERE District = 'Adana'";
 
     // The top N populated cities in a district where N is provided by the user.
-    String topCitiesDistrictPop = "SELECT Name,Population,District FROM city WHERE District = 'Adana' LIMIT 3";
+    String topCitiesDistrictPop = "SELECT * FROM city WHERE District = 'Adana' LIMIT 3";
+
+    //Get the total population of each continent
+    String totPopContinent = "SELECT Continent, SUM(Population) AS TotalPopulation FROM country GROUP BY Continent";
+
+    //Get country population details
+    String countryPop = "SELECT country.Name, country.Continent, country.Code, country.Region, country.Population, SUM(city.Population) AS CityPopulation FROM city  INNER JOIN country ON (country.Code = city.CountryCode) GROUP BY city.CountryCode";
 
 
     public static void main(String[] args) throws SQLException {
@@ -85,9 +91,7 @@ public class App {
             a.connect(args[0], Integer.parseInt(args[1]));
         }
 
-        ResultSet resultSet = a.databaseRequester(a.topCountriesWorldPop);
-        ArrayList<Country> countries = a.countryLister(resultSet);
-        a.countryPrinter(countries);
+        a.cityRequest(a.cityContinentPop);
 
         // Disconnect from database
         a.disconnect();
@@ -140,6 +144,19 @@ public class App {
         }
     }
 
+    // Main functions //
+
+    public void countryRequest(String request) throws SQLException {
+        ResultSet resultSet = databaseRequester(request);
+        countryPrinter(countryLister(resultSet));
+    }
+
+    public void cityRequest(String request) throws SQLException {
+        ResultSet resultSet = databaseRequester(request);
+        cityPrinter(cityLister(resultSet));
+    }
+    
+
     // PRINTERS //
     /**
      * @param cities City list
@@ -165,6 +182,9 @@ public class App {
         }
     }
 
+    /**
+     * @param countries country list
+     */
     public void countryPrinter(ArrayList<Country> countries){
 
         if(countries == null)
@@ -185,12 +205,35 @@ public class App {
         }
     }
 
+    public void countryPopulationPrinter(ArrayList<Country> countries) {
+
+        if(countries == null)
+        {
+            System.out.println("No countries");
+            return;
+        }
+        //print header
+        System.out.println(String.format("|%-10s|%-10s|%-10s|%-10s|", "Name", "Total Population","Population living in cities","Population not living in cities"));
+        // Loop over all countries in the list
+        for (Country cty : countries) {
+
+            if(cty == null)
+            {
+                continue;
+            }
+            Float cityPopPerc = (float) ((cty.cityPopulation * 100) / cty.population);
+            Float notCityPopPerc = 100 - cityPopPerc;
+            String cty_string = String.format("|%-10s|%-10s|%-10s|%-10s|", cty.name, cty.population, cityPopPerc, notCityPopPerc);
+            System.out.println(cty_string);
+
+        }
+    }
+
     // Lister //
     /**
      *
      * @param resultSet Result of the SQL request
      * @return List of city
-     * @throws SQLException
      */
      public ArrayList<City> cityLister(ResultSet resultSet) throws SQLException {
 
@@ -209,8 +252,7 @@ public class App {
     /**
      *
      * @param resultSet Result of the SQL request
-     * @return List of city
-     * @throws SQLException
+     * @return List of country
      */
     public ArrayList<Country> countryLister(ResultSet resultSet) throws SQLException {
 
@@ -236,6 +278,28 @@ public class App {
         }
         return countries;
     }
+
+
+    /**
+     *
+     * @param resultSet Result of the SQL request
+     * @return List of country with details on population
+     */
+    public ArrayList<Country> PopulationLister(ResultSet resultSet) throws SQLException {
+        ArrayList<Country> countries = new ArrayList<>();
+        while (resultSet.next()) {
+            Country country = new Country();
+            country.name = resultSet.getString("Name");
+            country.continent = resultSet.getString("Continent");
+            country.code = resultSet.getString("Code");
+            country.population = resultSet.getInt("Population");
+            country.cityPopulation = resultSet.getInt("CityPopulation");
+            country.region = resultSet.getString("Region");
+            countries.add(country);
+        }
+        return countries;
+    }
+
 
 
     // Basic methods //
