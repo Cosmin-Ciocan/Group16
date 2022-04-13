@@ -20,4 +20,12 @@ import static org.junit.jupiter.api.Assertions.*;
             app.connect("localhost:33060", 3000);
 
         }
+
+        @Test
+        void testGetCity()
+        {
+            City city = app.getCity("Kabul");
+            assertEquals(city.countryCode, "AFG");
+            assertEquals(city.district, "Kabol");
+        }
 }
