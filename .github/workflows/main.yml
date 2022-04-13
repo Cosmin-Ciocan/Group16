@@ -1,6 +1,8 @@
 name: A workflow for my Hello World App
-on: push
-
+on:
+  push:
+    branches:
+      - master
 jobs:
   UnitTests:
     name: Unit Tests
@@ -17,6 +19,13 @@ jobs:
           distribution: 'adopt'
       - name: Unit Tests
         run: mvn -Dtest=com.napier.sem.AppTest test
+      - name: CodeCov
+        uses: codecov/codecov-action@v2
+        with:
+          # token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+          directory: ./target/site/jacoco
+          flags: Unit Tests # optional
+          verbose: true # optional (default = false)
 
   IntegrationTests:
     name: Integration Tests
@@ -34,10 +43,10 @@ jobs:
       - name: Integration Tests and CodeCov
         run: |
           docker build -t database ./db 
-          docker run --name world -dp 33060:3306 database
+          docker run --name employees -dp 33060:3306 database
           mvn -Dtest=com.napier.sem.AppIntegrationTest test          
-          docker stop world
-          docker rm world
+          docker stop employees
+          docker rm employees
           docker image rm database
       - name: CodeCov
         uses: codecov/codecov-action@v2
@@ -47,7 +56,7 @@ jobs:
           flags: Integration Tests # optional
           verbose: true # optional (default = false)
   build:
-    name: Build and Start Using docker-compose
+    name: Build Run in Docker and Deploy Release
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
@@ -63,3 +72,10 @@ jobs:
         run: |
           mvn package -DskipTests
           docker-compose up --abort-on-container-exit
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          automatic_release_tag: "latest"
+          files: |
+            ./target/*.jar
