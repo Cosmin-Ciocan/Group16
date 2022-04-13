@@ -34,6 +34,10 @@ public class Country
      */
     public Integer population;
     /**
+     * Country's city population
+     */
+    public Integer cityPopulation;
+    /**
      * Country's average life expectancy
      */
     public Float lifeExpectancy;

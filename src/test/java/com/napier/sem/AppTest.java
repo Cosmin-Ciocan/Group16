@@ -18,6 +18,7 @@ public class AppTest {
         app = new App();
     }
 
+    //Tests for City Printer
     @Test
     void cityPrinterNull(){
         app.cityPrinter(null);
@@ -36,5 +37,29 @@ public class AppTest {
         cities.add(null);
         app.cityPrinter(cities);
     }
+
+    //Tests for Country Printer
+    @Test
+    void countryPrinterNull(){
+        app.countryPrinter(null);
+    }
+
+    @Test
+    void printCountriesTestEmpty()
+    {
+        ArrayList<Country> countries = new ArrayList<>();
+        app.countryPrinter(countries);
+    }
+
+    @Test
+    void printCountriesTestContainsNull()
+    {
+        ArrayList<Country> countries = new ArrayList<>();
+        countries.add(null);
+        app.countryPrinter(countries);
+    }
+
+    //Tests for city lister
+
 
 }
