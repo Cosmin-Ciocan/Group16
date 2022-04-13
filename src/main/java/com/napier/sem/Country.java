@@ -52,7 +52,7 @@ public class Country
     /**
      * Country's government form
      */
-    public String GovernmentForm;
+    public String governmentForm;
     /**
      * Country's head of state name
      */
