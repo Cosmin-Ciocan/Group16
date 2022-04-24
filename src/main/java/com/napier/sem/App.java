@@ -2,6 +2,8 @@ package com.napier.sem;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * main app
@@ -372,6 +374,34 @@ public class App {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countryLanguage");
+        }
+    }
+
+    /**
+     * The population of people, people living in cities, and people not living in cities in each continent.
+     */
+    public void popInCityAndNot() {
+
+        Map<String, String> map = new HashMap<String, String>();
+
+        try {
+            Statement stmt = con.createStatement();
+
+            String strSelect = "SELECT Continent, SUM(Population) AS Population FROM country GROUP BY Continent";
+
+            ResultSet resultSet = stmt.executeQuery(strSelect);
+
+            //Country country = new Country();
+
+            while (resultSet.next()) {
+                map.put(resultSet.getString("Continent"), resultSet.getString("Population"));
+            }
+
+            System.out.println(map);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get popInCityAndNot");
         }
     }
 
