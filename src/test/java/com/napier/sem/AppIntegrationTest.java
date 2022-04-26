@@ -24,8 +24,9 @@ import static org.junit.jupiter.api.Assertions.*;
         @Test
         void testGetCity()
         {
-            City city = app.getCity("Kabul");
+            City city = app.getCity(1);
             assertEquals(city.countryCode, "AFG");
             assertEquals(city.district, "Kabol");
         }
+
 }
