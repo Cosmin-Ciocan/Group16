@@ -112,4 +112,21 @@ public class AppTest {
     void outputCityTestCityNull(){
         app.outputCity(null, "test.md");
     }
+
+    @Test
+    void outputCapitalCityTestCapitalCityNull(){
+        app.outputCapitalCity(null, "test.md");
+    }
+
+    @Test
+    void outputCapitalCityTestFilenameNull(){
+        ArrayList<City> cities = new ArrayList<>();
+        app.outputCapitalCity(cities, null);
+    }
+
+    @Test
+    void outputCapitalCityTestFilenameEmpty(){
+        ArrayList<City> cities = new ArrayList<>();
+        app.outputCapitalCity(cities, "");
+    }
 }
