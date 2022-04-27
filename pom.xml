@@ -73,6 +73,7 @@
                 <version>2.19.1</version>
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
+                    <failIfNoTests>false</failIfNoTests>
                 </configuration>
                 <dependencies>
                     <dependency>
