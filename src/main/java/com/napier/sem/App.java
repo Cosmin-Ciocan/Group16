@@ -605,6 +605,16 @@ public class App {
     public Integer getDistrictPopulation(String districtName){
         Integer population = 0;
         ArrayList<City> cityList = getCityList();
+
+        if(districtName == null){
+            System.out.println("No district name");
+            return null;
+        }
+
+        if(districtName.isEmpty()){
+            System.out.println("No district name");
+            return null;
+        }
         for(City city : cityList){
             if((city.district).equals(districtName))
                 population += city.population;
