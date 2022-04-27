@@ -744,6 +744,11 @@ public class App {
      */
     public City getCity(Integer cityCode){
         City city = new City();
+        if(cityCode == null){
+            System.out.println("No city code");
+            return null;
+        }
+
         try {
             Statement stmt = con.createStatement();
 

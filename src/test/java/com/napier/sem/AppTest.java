@@ -229,4 +229,9 @@ public class AppTest {
     void getLanguagePopulationTestLanguageEmpty(){
         app.getLanguagePopulation("");
     }
+
+    @Test
+    void getCityTestCityCodeNull(){
+        app.getCity(null);
+    }
 }
