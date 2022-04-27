@@ -169,4 +169,14 @@ public class AppTest {
     void outputLanguagePopulationTestFilenameEmpty(){
         app.outputLanguagePopulation("");
     }
+
+    @Test
+    void getCityPopulationTestCityNameNull(){
+        app.getCityPopulation(null);
+    }
+
+    @Test
+    void getCityPopulationTestCityNameEmpty(){
+        app.getCityPopulation("");
+    }
 }

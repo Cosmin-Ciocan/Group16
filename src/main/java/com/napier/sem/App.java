@@ -579,6 +579,16 @@ public class App {
     public Integer getCityPopulation(String cityName){
         Integer population = 0;
         ArrayList<City> cityList = getCityList();
+
+        if(cityName == null){
+            System.out.println("No city name");
+            return null;
+        }
+
+        if(cityName.isEmpty()){
+            System.out.println("No city name");
+            return null;
+        }
         for(City city : cityList){
             if((city.name).equals(cityName))
             population = city.population;
