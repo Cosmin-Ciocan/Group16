@@ -46,17 +46,47 @@ public class AppTest {
 
     @Test
     void cityRequestTestRequestEmpty() throws SQLException {
-        app.countryRequest("","test.md");
+        app.cityRequest("","test.md");
     }
 
     @Test
     void cityRequestTestFilenameNull() throws SQLException {
-        app.countryRequest("request",null);
+        app.cityRequest("request",null);
     }
 
     @Test
     void cityRequestTestFilenameEmpty() throws SQLException {
-        app.countryRequest("request","");
+        app.cityRequest("request","");
     }
 
+    @Test
+    void capitalCityRequestTestRequestNull() throws SQLException {
+        app.capitalCityRequest(null, "test.md");
+    }
+
+    @Test
+    void capitalCityRequestTestRequestEmpty() throws SQLException {
+        app.capitalCityRequest("", "test.md");
+    }
+
+    @Test
+    void capitalCityRequestTestFilenameNull() throws SQLException {
+        app.capitalCityRequest("request", null);
+    }
+
+    @Test
+    void capitalCityRequestTestFilenameEmpty() throws SQLException {
+        app.capitalCityRequest("request", "");
+    }
+
+    @Test
+    void outputCountryTestFilenameNull() {
+        ArrayList<Country> countries =  new ArrayList<>();
+        app.outputCountry(countries, null);
+    }
+
+    @Test
+    void outputCountryTestCountryNull(){
+        app.outputCountry(null, "test.md");
+    }
 }

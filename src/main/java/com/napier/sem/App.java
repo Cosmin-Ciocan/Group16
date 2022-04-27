@@ -215,6 +215,17 @@ public class App {
      * @throws SQLException Sql exception
      */
     public void capitalCityRequest(String request, String fileName) throws SQLException {
+
+        if(request == null || request.isEmpty()) {
+            System.out.println("No request");
+            return;
+        }
+
+        if(fileName == null || fileName.isEmpty()){
+            System.out.println("Filename Missing");
+            return;
+        }
+
         ResultSet resultSet = databaseRequester(request);
         outputCapitalCity(cityLister(resultSet), fileName);
     }
@@ -231,6 +242,11 @@ public class App {
         // Check employees is not null
         if (countries == null) {
             System.out.println("No countries");
+            return;
+        }
+
+        if(filename == null){
+            System.out.println("No filename");
             return;
         }
 
