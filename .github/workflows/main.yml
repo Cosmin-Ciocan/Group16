@@ -80,7 +80,7 @@ jobs:
           files: |
             ./target/*.jar
       - name: Copy Output
-        run: docker container cp sem_world_app_1:./tmp/reports ./
+        run: docker container cp group16_app_1:./tmp/reports ./
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
