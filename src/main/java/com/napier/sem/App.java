@@ -97,10 +97,31 @@ public class App {
             a.connect(args[0], Integer.parseInt(args[1]));
         }
 
-        //a.countryRequest(a.countriesWorldPop, "countriesWorldPop");
-        //a.cityRequest(a.cityWorldPop, "cityWorldPop");
-        //a.outputContinentPopulation(a.getCountryList(), "continentPopulation.md");
-        a.outputLanguagePopulation();
+        a.countryRequest(a.countriesWorldPop, "WorldCountriesPopulation.md");
+        a.countryRequest(a.countriesContinentPop, "ContinentCountriesPopulation.md");
+        a.countryRequest(a.countriesRegionPop, "RegionCountriesPopulation.md");
+        a.countryRequest(a.topCountriesWorldPop, "TopWorldCountriesPopulation.md");
+        a.countryRequest(a.topCountriesContinentPop, "TopContinentCountriesPopulation.md");
+        a.countryRequest(a.topCountriesRegionPop, "TopRegionCountriesPopulation.md");
+        a.cityRequest(a.cityWorldPop, "WorldCitiesPopulation.md");
+        a.cityRequest(a.cityContinentPop, "ContinentCitiesPopulation.md");
+        a.cityRequest(a.cityRegionPop, "RegionCitiesPopulation.md");
+        a.cityRequest(a.cityCountryPop, "CountryCitiesPopulation.md");
+        a.cityRequest(a.cityDistrictPop, "DistrictCitiesPopulation.md");
+        a.cityRequest(a.topCitiesWorldPop, "WorldTopCitiesPopulation.md");
+        a.cityRequest(a.topCitiesContinentPop, "ContinentTopCitiesPopulation.md");
+        a.cityRequest(a.topCitiesRegionPop, "RegionTopCitiesPopulation.md");
+        a.cityRequest(a.topCitiesCountryPop, "CountryTopCitiesPopulation.md");
+        a.cityRequest(a.topCitiesDistrictPop, "DistrictTopCitiesPopulation.md");
+        a.capitalCityRequest(a.capitalCitiesWorldPop, "WorldCapitalCitiesPop.md");
+        a.capitalCityRequest(a.capitalCitiesContinentPop, "ContinentCapitalCitiesPop.md");
+        a.capitalCityRequest(a.capitalCitiesRegionPop, "RegionCapitalCitiesPop.md");
+        a.capitalCityRequest(a.topCitiesWorldPop, "WorldTopCapitalCitiesPop.md");
+        a.capitalCityRequest(a.topCitiesContinentPop, "ContinentTopCapitalCitiesPop.md");
+        a.capitalCityRequest(a.topCitiesRegionPop, "RegionTopCapitalCitiesPop.md");
+        a.outputContinentPopulation("DetailedPopulationContinent.md");
+        a.outputRegionPopulation("DetailedPopulationRegion.md");
+        a.outputCountryPopulation("DetailedPopulationCountry.md");
 
         // Disconnect from database
         a.disconnect();
@@ -158,34 +179,34 @@ public class App {
     /**
      *
      * @param request Sql Request
-     * @param fileName Name of the markdown output file
+     * @param fileName Name of the output file
      * @throws SQLException
      */
     public void countryRequest(String request, String fileName) throws SQLException {
         ResultSet resultSet = databaseRequester(request);
-        outputCountry(countryLister(resultSet), fileName + ".md");
+        outputCountry(countryLister(resultSet), fileName);
     }
 
     /**
      *
      * @param request Sql Request
-     * @param fileName Name of the markdown output file
+     * @param fileName Name of the output file
      * @throws SQLException
      */
     public void cityRequest(String request, String fileName) throws SQLException {
         ResultSet resultSet = databaseRequester(request);
-        outputCity(cityLister(resultSet), fileName + ".md");
+        outputCity(cityLister(resultSet), fileName);
     }
 
     /**
      *
      * @param request Sql Request
-     * @param fileName Name of the markdown output file
+     * @param fileName Name of the output file
      * @throws SQLException
      */
     public void capitalCityRequest(String request, String fileName) throws SQLException {
         ResultSet resultSet = databaseRequester(request);
-        outputCapitalCity(cityLister(resultSet), fileName + ".md");
+        outputCapitalCity(cityLister(resultSet), fileName);
     }
 
 
@@ -273,7 +294,8 @@ public class App {
         filePrinter(filename, sb);
     }
 
-    public void outputCountryPopulation(ArrayList<Country> countries, String filename) {
+    public void outputCountryPopulation(String filename) {
+        ArrayList<Country> countries = getCountryList();
         if(countries == null)
         {
             System.out.println("No countries");
@@ -302,7 +324,8 @@ public class App {
         filePrinter(filename, sb);
     }
 
-    public void outputRegionPopulation(ArrayList<Country> countries, String filename){
+    public void outputRegionPopulation(String filename){
+        ArrayList<Country> countries = getCountryList();
         if(countries == null)
         {
             System.out.println("No countries");
@@ -337,7 +360,8 @@ public class App {
         filePrinter(filename, sb);
     }
 
-    public void outputContinentPopulation(ArrayList<Country> countries, String filename){
+    public void outputContinentPopulation(String filename){
+        ArrayList<Country> countries = getCountryList();
         if(countries == null)
         {
             System.out.println("No countries");
