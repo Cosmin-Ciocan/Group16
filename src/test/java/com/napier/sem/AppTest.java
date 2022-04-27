@@ -93,6 +93,23 @@ public class AppTest {
     @Test
     void outputCountryTestFilenameEmpty(){
         ArrayList<Country> countries =  new ArrayList<>();
-        app.outputCountry(countries, null);
+        app.outputCountry(countries, "");
+    }
+
+    @Test
+    void outputCityTestFilenameNull(){
+        ArrayList<City> cities = new ArrayList<>();
+        app.outputCity(cities, null);
+    }
+
+    @Test
+    void outputCityTestFilenameEmpty(){
+        ArrayList<City> cities = new ArrayList<>();
+        app.outputCity(cities, "");
+    }
+
+    @Test
+    void outputCityTestCityNull(){
+        app.outputCity(null, "test.md");
     }
 }

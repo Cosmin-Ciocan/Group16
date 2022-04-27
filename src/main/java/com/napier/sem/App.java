@@ -280,6 +280,18 @@ public class App {
             return;
         }
 
+        if(filename == null)
+        {
+            System.out.println("No filename");
+            return;
+        }
+
+        if(filename.isEmpty())
+        {
+            System.out.println("No filename");
+            return;
+        }
+
         StringBuilder sb = new StringBuilder();
         // Print header
         sb.append("| Name | Country | District | Population |\r\n");
@@ -302,6 +314,7 @@ public class App {
             System.out.println("No cities");
             return;
         }
+
 
         StringBuilder sb = new StringBuilder();
         // Print header
