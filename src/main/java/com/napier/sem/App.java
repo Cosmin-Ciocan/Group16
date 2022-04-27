@@ -80,12 +80,6 @@ public class App {
     // The top N populated cities in a district where N is provided by the user.
     String topCitiesDistrictPop = "SELECT * FROM city WHERE District = 'Adana' LIMIT 3";
 
-    //Get the total population of each continent
-    String totPopContinent = "SELECT Continent, SUM(Population) AS TotalPopulation FROM country GROUP BY Continent";
-
-    //Get country population details
-    String countryPop = "SELECT country.Name, country.Continent, country.Code, country.Region, country.Population, SUM(city.Population) AS CityPopulation FROM city  INNER JOIN country ON (country.Code = city.CountryCode) GROUP BY city.CountryCode";
-
 
     public static void main(String[] args) throws SQLException {
         // Create new Application
@@ -116,9 +110,9 @@ public class App {
         a.capitalCityRequest(a.capitalCitiesWorldPop, "WorldCapitalCitiesPop.md");
         a.capitalCityRequest(a.capitalCitiesContinentPop, "ContinentCapitalCitiesPop.md");
         a.capitalCityRequest(a.capitalCitiesRegionPop, "RegionCapitalCitiesPop.md");
-        a.capitalCityRequest(a.topCitiesWorldPop, "WorldTopCapitalCitiesPop.md");
-        a.capitalCityRequest(a.topCitiesContinentPop, "ContinentTopCapitalCitiesPop.md");
-        a.capitalCityRequest(a.topCitiesRegionPop, "RegionTopCapitalCitiesPop.md");
+        a.capitalCityRequest(a.topCapitalCitiesWorldPop, "WorldTopCapitalCitiesPop.md");
+        a.capitalCityRequest(a.topCapitalCitiesContinentPop, "ContinentTopCapitalCitiesPop.md");
+        a.capitalCityRequest(a.topCapitalCitiesRegionPop, "RegionTopCapitalCitiesPop.md");
         a.outputContinentPopulation("DetailedPopulationContinent.md");
         a.outputRegionPopulation("DetailedPopulationRegion.md");
         a.outputCountryPopulation("DetailedPopulationCountry.md");
@@ -151,9 +145,9 @@ public class App {
                 con = DriverManager.getConnection("jdbc:mysql://"+ location + "/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
-            } catch (SQLException sqle) {
-                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
-                System.out.println(sqle.getMessage());
+            } catch (SQLException sqlE) {
+                System.out.println("Failed to connect to database attempt " + i);
+                System.out.println(sqlE.getMessage());
             } catch (InterruptedException ie) {
                 System.out.println("Thread interrupted? Should not happen.");
             }
@@ -180,7 +174,7 @@ public class App {
      *
      * @param request Sql Request
      * @param fileName Name of the output file
-     * @throws SQLException
+     * @throws SQLException Sql exception
      */
     public void countryRequest(String request, String fileName) throws SQLException {
         ResultSet resultSet = databaseRequester(request);
@@ -191,7 +185,7 @@ public class App {
      *
      * @param request Sql Request
      * @param fileName Name of the output file
-     * @throws SQLException
+     * @throws SQLException Sql exception
      */
     public void cityRequest(String request, String fileName) throws SQLException {
         ResultSet resultSet = databaseRequester(request);
@@ -202,16 +196,13 @@ public class App {
      *
      * @param request Sql Request
      * @param fileName Name of the output file
-     * @throws SQLException
+     * @throws SQLException Sql exception
      */
     public void capitalCityRequest(String request, String fileName) throws SQLException {
         ResultSet resultSet = databaseRequester(request);
         outputCapitalCity(cityLister(resultSet), fileName);
     }
 
-
-
-    
 
     // PRINTERS //
 
@@ -235,10 +226,7 @@ public class App {
         for (Country cty : countries) {
             if (cty == null) continue;
             City capital = getCity(cty.capital);
-            sb.append("| " + cty.code + " | " +
-                    cty.name + " | " + cty.continent + " | " +
-                    cty.region + " | " + cty.population + " | "
-                    + capital.name + " |\r\n");
+            sb.append("| ").append(cty.code).append(" | ").append(cty.name).append(" | ").append(cty.continent).append(" | ").append(cty.region).append(" | ").append(cty.population).append(" | ").append(capital.name).append(" |\r\n");
         }
         filePrinter(filename, sb);
     }
@@ -262,9 +250,7 @@ public class App {
         // Loop over all cities in the list
         for (City city : cities) {
             if (city == null) continue;
-            sb.append("| " + city.name + " | " +
-                    city.countryCode + " | " + city.district + " | " +
-                    city.population + " |\r\n");
+            sb.append("| ").append(city.name).append(" | ").append(city.countryCode).append(" | ").append(city.district).append(" | ").append(city.population).append(" |\r\n");
         }
         filePrinter(filename, sb);
     }
@@ -287,13 +273,16 @@ public class App {
         // Loop over all cities in the list
         for (City city : cities) {
             if (city == null) continue;
-            sb.append("| " + city.name + " | " +
-                    city.countryCode + " | " +
-                    city.population + " |\r\n");
+            sb.append("| ").append(city.name).append(" | ").append(city.countryCode).append(" | ").append(city.population).append(" |\r\n");
         }
         filePrinter(filename, sb);
     }
 
+
+    /**
+     * Output country population details to markdown file
+     * @param filename name of the destination file
+     */
     public void outputCountryPopulation(String filename) {
         ArrayList<Country> countries = getCountryList();
         if(countries == null)
@@ -311,19 +300,21 @@ public class App {
             if (cty == null) continue;
             Double cityPopulation = (double) cty.cityPopulation;
             Double Population = (double) cty.population;
-            Integer cityPopPerc = (int) round(cityPopulation / Population * 100);
+            int cityPopPerc = (int) round(cityPopulation / Population * 100);
             if (cityPopPerc > 100) {
                 cityPopPerc = 100;
             }
-            Integer notCityPopPerc = 100 - cityPopPerc;
+            int notCityPopPerc = 100 - cityPopPerc;
 
-            sb.append("| " + cty.name + " | " +
-                    cty.population + " | " +
-                    cityPopPerc + " % | " + notCityPopPerc + " % |\r\n");
+            sb.append("| ").append(cty.name).append(" | ").append(cty.population).append(" | ").append(cityPopPerc).append(" % | ").append(notCityPopPerc).append(" % |\r\n");
         }
         filePrinter(filename, sb);
     }
 
+    /**
+     * Output region population details to markdown file
+     * @param filename name of the destination file
+     */
     public void outputRegionPopulation(String filename){
         ArrayList<Country> countries = getCountryList();
         if(countries == null)
@@ -350,16 +341,18 @@ public class App {
                     cityPopulation += cty.cityPopulation;
                 }
             }
-            Integer cityPopPerc = (int) (cityPopulation / population * 100);
-            Integer notCityPopPerc = 100 - cityPopPerc;
-            Integer finalPopulation = population.intValue() ;
-            sb.append("| " + region + " | " +
-                    finalPopulation + " | " +
-                    cityPopPerc + " % | " + notCityPopPerc + " % |\r\n");
+            int cityPopPerc = (int) (cityPopulation / population * 100);
+            int notCityPopPerc = 100 - cityPopPerc;
+            int finalPopulation = population.intValue() ;
+            sb.append("| ").append(region).append(" | ").append(finalPopulation).append(" | ").append(cityPopPerc).append(" % | ").append(notCityPopPerc).append(" % |\r\n");
         }
         filePrinter(filename, sb);
     }
 
+    /**
+     * Output continent population details to markdown file
+     * @param filename name of the destination file
+     */
     public void outputContinentPopulation(String filename){
         ArrayList<Country> countries = getCountryList();
         if(countries == null)
@@ -386,17 +379,19 @@ public class App {
                     cityPopulation += cty.cityPopulation;
                 }
             }
-            Integer cityPopPerc = (int) round(cityPopulation / population * 100);
-            Integer notCityPopPerc = 100 - cityPopPerc;
-            Integer finalPopulation = population.intValue() ;
-            sb.append("| " + continent + " | " +
-                    finalPopulation + " | " +
-                    cityPopPerc + " % | " + notCityPopPerc + " % |\r\n");
+            int cityPopPerc = (int) round(cityPopulation / population * 100);
+            int notCityPopPerc = 100 - cityPopPerc;
+            int finalPopulation = population.intValue() ;
+            sb.append("| ").append(continent).append(" | ").append(finalPopulation).append(" | ").append(cityPopPerc).append(" % | ").append(notCityPopPerc).append(" % |\r\n");
         }
         filePrinter(filename, sb);
     }
 
-    public void outputLanguagePopulation(){
+    /**
+     * Output language details to markdown file
+     * @param filename name of the destination file
+     */
+    public void outputLanguagePopulation(String filename){
         ArrayList<String> languages = new ArrayList<>();
         languages.add("Chinese");
         languages.add("Hindi");
@@ -413,93 +408,16 @@ public class App {
 
         for(String language : languages){
             Integer pop = getLanguagePopulation(language);
-            Float worldPerc = (((float) pop / (float) worldPop) * 100);
-            sb.append("| " + language + " | " +
-                    pop + " | " +
-                    worldPerc + " % |\r\n");
+            float worldPerc = (((float) pop / (float) worldPop) * 100);
+            sb.append("| ").append(language).append(" | ").append(pop).append(" | ").append(worldPerc).append(" % |\r\n");
         }
-        filePrinter("LanguagePop.md",sb);
+        filePrinter(filename,sb);
     }
 
-    /**
-     * @param cities City list
-     */
-    public void cityPrinter(ArrayList<City> cities){
-
-        // Check cities is not null
-        if (cities == null)
-        {
-            System.out.println("No cities");
-            return;
-        }
-
-        //print header
-        System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
-        // Loop over all countries in the list
-        for (City city : cities) {
-            if (city == null)
-                continue;
-
-            String city_string = String.format("|%-10s|%-10s|", city.name, city.population);
-            System.out.println(city_string);
-        }
-    }
-
-    /**
-     * @param countries country list
-     */
-    public void countryPrinter(ArrayList<Country> countries){
-
-        if(countries == null)
-        {
-            System.out.println("No countries");
-            return;
-        }
-        //print header
-        System.out.println(String.format("|%-10s|%-10s|", "Name", "Population"));
-        // Loop over all countries in the list
-        for (Country cty : countries) {
-            if(cty == null)
-            {
-                continue;
-            }
-            String cty_string = String.format("|%-10s|%-10s|", cty.name, cty.population);
-            System.out.println(cty_string);
-        }
-    }
-
-    public void countryPopulationPrinter(ArrayList<Country> countries) {
-
-        if(countries == null)
-        {
-            System.out.println("No countries");
-            return;
-        }
-        //print header
-        System.out.println(String.format("|%-10s|%-10s|%-10s|%-10s|", "Name", "Total Population","Population living in cities","Population not living in cities"));
-        // Loop over all countries in the list
-        for (Country cty : countries) {
-
-            if(cty == null)
-            {
-                continue;
-            }
-            Float cityPopulation = (float) cty.cityPopulation;
-            Float Population = (float) cty.population;
-            Integer cityPopPerc = round(cityPopulation / Population*100);
-            if (cityPopPerc > 100){
-                cityPopPerc = 100;
-            }
-            Integer notCityPopPerc = 100 - cityPopPerc;
-            String cty_string = String.format("|%-10s|%-10s|%-10s|%-10s|", cty.name, cty.population, cityPopPerc, notCityPopPerc);
-            System.out.println(cty_string);
-
-        }
-    }
 
     // Lister //
     /**
-     *
+     * Convert a result set of database request into a list of city
      * @param resultSet Result of the SQL request
      * @return List of city
      */
@@ -518,7 +436,7 @@ public class App {
      }
 
     /**
-     *
+     * Convert a result set of database request into a list of country
      * @param resultSet Result of the SQL request
      * @return List of country
      */
@@ -547,29 +465,13 @@ public class App {
         return countries;
     }
 
-
-    /**
-     *
-     * @param resultSet Result of the SQL request
-     * @return List of country with details on population
-     */
-    public ArrayList<Country> PopulationLister(ResultSet resultSet) throws SQLException {
-        ArrayList<Country> countries = new ArrayList<>();
-        while (resultSet.next()) {
-            Country country = new Country();
-            country.name = resultSet.getString("Name");
-            country.continent = resultSet.getString("Continent");
-            country.code = resultSet.getString("Code");
-            country.population = resultSet.getInt("Population");
-            country.cityPopulation = resultSet.getInt("CityPopulation");
-            country.region = resultSet.getString("Region");
-            countries.add(country);
-        }
-        return countries;
-    }
-
     // Population methods
 
+    /**
+     * Get the population of a city
+     * @param cityName name of the city
+     * @return city population
+     */
     public Integer getCityPopulation(String cityName){
         Integer population = 0;
         ArrayList<City> cityList = getCityList();
@@ -580,6 +482,12 @@ public class App {
         return population;
     }
 
+
+    /**
+     * Get the population of a District
+     * @param districtName name of the district
+     * @return district population
+     */
     public Integer getDistrictPopulation(String districtName){
         Integer population = 0;
         ArrayList<City> cityList = getCityList();
@@ -590,6 +498,12 @@ public class App {
         return population;
     }
 
+
+    /**
+     * Get the population of a country
+     * @param countryCode code of the country
+     * @return city population
+     */
     public Integer getCountryPopulation(String countryCode){
         Integer population = 0;
         ArrayList<Country> countryList = getCountryList();
@@ -600,6 +514,11 @@ public class App {
         return population;
     }
 
+    /**
+     * Get the population of a region
+     * @param regionName name of the region
+     * @return region population
+     */
     public Integer getRegionPopulation(String regionName){
         Integer population = 0;
         ArrayList<Country> countryList = getCountryList();
@@ -610,8 +529,13 @@ public class App {
         return population;
     }
 
+    /**
+     * Get the population of a continent
+     * @param continentName name of the continent
+     * @return continent population
+     */
     public Long getContinentPopulation(String continentName){
-        Long population = Long.valueOf(0);
+        Long population = 0L;
         ArrayList<Country> countryList = getCountryList();
         for(Country country : countryList){
             if((country.continent).equals(continentName))
@@ -620,8 +544,12 @@ public class App {
         return population;
     }
 
+    /**
+     * Get the population of the world
+     * @return world population
+     */
     public Long getWorldPopulation(){
-        Long population = Long.valueOf(0);
+        Long population = 0L;
         ArrayList<Country> countryList = getCountryList();
         for(Country country : countryList){
                 population += country.population;
@@ -629,8 +557,13 @@ public class App {
         return population;
     }
 
+    /**
+     * Get the number of people speaking a language in the world
+     * @param language name of the language
+     * @return Population
+     */
     public Integer getLanguagePopulation(String language){
-        Float population = Float.valueOf(0);
+        float population = (float) 0;
         ArrayList<CountryLanguage> countryLanguageList = getCountryLanguageList();
 
         for(CountryLanguage cl : countryLanguageList){
@@ -638,20 +571,22 @@ public class App {
                 population += (getCountryPopulation(cl.countryCode) * cl.percentage)/100;
             }
         }
-        Integer roundedPop = round(population);
         return round(population);
     }
 
+    // Database methods //
 
-
-    // Basic methods //
-
+    /**
+     * Get city data from database
+     * @param cityCode Code of the city
+     * @return City data
+     */
     public City getCity(Integer cityCode){
         City city = new City();
         try {
             Statement stmt = con.createStatement();
 
-            String strSelect = "SELECT Name, CountryCode, District, Population FROM `city` WHERE ID = '" + cityCode + "'";
+            String strSelect = "SELECT Name, CountryCode, District, Population FROM city WHERE ID = '" + cityCode + "'";
 
             ResultSet resultSet = stmt.executeQuery(strSelect);
             while (resultSet.next()) {
@@ -668,6 +603,10 @@ public class App {
         return city;
     }
 
+    /**
+     * Get the list of all the city in the database
+     * @return City list
+     */
     public ArrayList<City> getCityList(){
         ArrayList<City> cities = new ArrayList<>();
         try {
@@ -692,6 +631,10 @@ public class App {
         return cities;
     }
 
+    /**
+     * Get the list of all the country in the database
+     * @return Country list
+     */
     public ArrayList<Country> getCountryList(){
         ArrayList<Country> countries = new ArrayList<>();
         try {
@@ -728,6 +671,10 @@ public class App {
         return countries;
     }
 
+    /**
+     * Get the list of all the language in all the countries
+     * @return Country Language list
+     */
     public ArrayList<CountryLanguage> getCountryLanguageList(){
         ArrayList<CountryLanguage> countriesLanguage = new ArrayList<>();
         try {
@@ -751,6 +698,10 @@ public class App {
         return countriesLanguage;
     }
 
+    /**
+     * Get the list of all the region in the world
+     * @return Region name list
+     */
     public ArrayList<String> getRegionList(){
         ArrayList<String> regionList = new ArrayList<>();
         try {
@@ -770,6 +721,10 @@ public class App {
         return regionList;
     }
 
+    /**
+     * Get the list of all the continent in the world
+     * @return Continent name list
+     */
     public ArrayList<String> getContinentList(){
         ArrayList<String> continentList = new ArrayList<>();
         try {
@@ -789,13 +744,18 @@ public class App {
         return continentList;
     }
 
+    /**
+     * Get the number of people living in cities in a country
+     * @param countryCode Code of the country
+     * @return Population
+     */
     public Integer getCountryCityPopulation(String countryCode){
 
-        Integer cityPop = 0;
+        int cityPop = 0;
         try {
             Statement stmt = con.createStatement();
 
-            String strSelect = "SELECT SUM(Population) AS CityPopulation FROM city  WHERE CountryCode = '"+countryCode+"'";
+            String strSelect = "SELECT SUM(Population) AS CityPopulation FROM city WHERE CountryCode = '"+countryCode+"'";
 
             ResultSet resultSet = stmt.executeQuery(strSelect);
             if (resultSet.next()) {
@@ -829,7 +789,7 @@ public class App {
     public void filePrinter (String filename, StringBuilder sb ){
         try {
             new File("./reports/").mkdir();
-            BufferedWriter writer = new BufferedWriter(new FileWriter(new File("./reports/" + filename)));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("./reports/" + filename));
             writer.write(sb.toString());
             writer.close();
         } catch (IOException e) {
