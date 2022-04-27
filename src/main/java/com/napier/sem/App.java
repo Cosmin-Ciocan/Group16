@@ -250,6 +250,11 @@ public class App {
             return;
         }
 
+        if(filename.isEmpty()){
+            System.out.println("No filemame");
+            return;
+        }
+
         StringBuilder sb = new StringBuilder();
         // Print header
         sb.append("| Code | Name | Continent | Region | Population | Capital |\r\n");

@@ -89,4 +89,10 @@ public class AppTest {
     void outputCountryTestCountryNull(){
         app.outputCountry(null, "test.md");
     }
+
+    @Test
+    void outputCountryTestFilenameEmpty(){
+        ArrayList<Country> countries =  new ArrayList<>();
+        app.outputCountry(countries, null);
+    }
 }
