@@ -129,4 +129,14 @@ public class AppTest {
         ArrayList<City> cities = new ArrayList<>();
         app.outputCapitalCity(cities, "");
     }
+
+    @Test
+    void outputCountryPopulationTestFilenameNull(){
+        app.outputCountryPopulation(null);
+    }
+
+    @Test
+    void outputCountryPopulationTestFilenameEmpty(){
+        app.outputCountryPopulation("");
+    }
 }

@@ -351,7 +351,17 @@ public class App {
             System.out.println("No countries");
             return;
         }
+        if(filename == null)
+        {
+            System.out.println("No filename");
+            return;
+        }
 
+        if(filename.isEmpty())
+        {
+            System.out.println("No filename");
+            return;
+        }
 
         StringBuilder sb = new StringBuilder();
         //print header
