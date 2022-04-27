@@ -950,6 +950,15 @@ public class App {
     {
         ResultSet resultSet;
 
+        if(Query == null){
+            System.out.println("No query");
+            return null;
+        }
+        if(Query.isEmpty()){
+            System.out.println("No query");
+            return null;
+        }
+
         try {
             Statement stmt = con.createStatement();
 

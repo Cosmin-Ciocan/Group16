@@ -244,4 +244,14 @@ public class AppTest {
     void getCountryCityPopulationTestCountryCodeEmpty(){
         app.getCountryCityPopulation("");
     }
+
+    @Test
+    void databaseRequesterTestQueryNull(){
+        app.databaseRequester(null);
+    }
+
+    @Test
+    void databaseRequesterTestQueryEmpty(){
+        app.databaseRequester("");
+    }
 }
