@@ -209,4 +209,14 @@ public class AppTest {
     void getRegionPopulationTestRegionNameEmpty(){
         app.getRegionPopulation("");
     }
+
+    @Test
+    void getContinentPopulationTestContinentNameNull(){
+        app.getContinentPopulation(null);
+    }
+
+    @Test
+    void getContinentPopulationTestContinentNameEmpty(){
+        app.getContinentPopulation("");
+    }
 }

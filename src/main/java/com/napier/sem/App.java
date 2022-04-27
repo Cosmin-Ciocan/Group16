@@ -680,6 +680,14 @@ public class App {
     public Long getContinentPopulation(String continentName){
         Long population = 0L;
         ArrayList<Country> countryList = getCountryList();
+        if(continentName == null){
+            System.out.println("No continent name");
+            return null;
+        }
+        if(continentName.isEmpty()){
+            System.out.println("No continent name");
+            return null;
+        }
         for(Country country : countryList){
             if((country.continent).equals(continentName))
                 population += country.population;
