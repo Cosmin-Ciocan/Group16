@@ -219,4 +219,14 @@ public class AppTest {
     void getContinentPopulationTestContinentNameEmpty(){
         app.getContinentPopulation("");
     }
+
+    @Test
+    void getLanguagePopulationTestLanguageNull(){
+        app.getLanguagePopulation(null);
+    }
+
+    @Test
+    void getLanguagePopulationTestLanguageEmpty(){
+        app.getLanguagePopulation("");
+    }
 }

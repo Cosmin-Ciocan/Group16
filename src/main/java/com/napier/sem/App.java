@@ -717,6 +717,16 @@ public class App {
         float population = (float) 0;
         ArrayList<CountryLanguage> countryLanguageList = getCountryLanguageList();
 
+        if(language == null){
+            System.out.println("No language");
+            return null;
+        }
+
+        if(language.isEmpty()){
+            System.out.println("No language");
+            return null;
+        }
+
         for(CountryLanguage cl : countryLanguageList){
             if(cl.language.equals(language)){
                 population += (getCountryPopulation(cl.countryCode) * cl.percentage)/100;
