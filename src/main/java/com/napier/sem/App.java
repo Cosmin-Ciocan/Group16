@@ -631,6 +631,16 @@ public class App {
     public Integer getCountryPopulation(String countryCode){
         Integer population = 0;
         ArrayList<Country> countryList = getCountryList();
+
+        if(countryCode == null){
+            System.out.println("No country code");
+            return null;
+        }
+        if(countryCode.isEmpty()){
+            System.out.println("No country code");
+            return null;
+        }
+
         for(Country country : countryList){
             if((country.code).equals(countryCode))
                 population = country.population;

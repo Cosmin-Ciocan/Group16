@@ -189,4 +189,14 @@ public class AppTest {
     void getDistrictPopulationTestDistrictNameEmpty(){
         app.getDistrictPopulation( "");
     }
+
+    @Test
+    void getCountryPopulationTestCountryCodeNull(){
+        app.getCountryPopulation(null);
+    }
+
+    @Test
+    void getCountryPopulationTestCountryCodeEmpty(){
+        app.getCountryPopulation("");
+    }
 }
