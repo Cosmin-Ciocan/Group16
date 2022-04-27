@@ -918,6 +918,16 @@ public class App {
     public Integer getCountryCityPopulation(String countryCode){
 
         int cityPop = 0;
+        if(countryCode == null)
+        {
+            System.out.println("No country code");
+            return null;
+        }
+        if(countryCode.isEmpty())
+        {
+            System.out.println("No country code");
+            return null;
+        }
         try {
             Statement stmt = con.createStatement();
 

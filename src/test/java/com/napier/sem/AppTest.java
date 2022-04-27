@@ -234,4 +234,14 @@ public class AppTest {
     void getCityTestCityCodeNull(){
         app.getCity(null);
     }
+
+    @Test
+    void getCountryCityPopulationTestCountryCodeNull(){
+        app.getCountryCityPopulation(null);
+    }
+
+    @Test
+    void getCountryCityPopulationTestCountryCodeEmpty(){
+        app.getCountryCityPopulation("");
+    }
 }
