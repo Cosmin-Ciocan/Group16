@@ -9,7 +9,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-    public class AppIntegrationTest
+    class AppIntegrationTest
     {
         static App app;
 
@@ -25,8 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
         void testGetCity()
         {
             City city = app.getCity(1);
-            assertEquals(city.countryCode, "AFG");
-            assertEquals(city.district, "Kabol");
+            assertEquals("The city code is not AFG",city.countryCode, "AFG");
         }
 
 }
