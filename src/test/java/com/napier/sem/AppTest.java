@@ -199,4 +199,14 @@ public class AppTest {
     void getCountryPopulationTestCountryCodeEmpty(){
         app.getCountryPopulation("");
     }
+
+    @Test
+    void getRegionPopulationTestRegionNameNull(){
+        app.getRegionPopulation(null);
+    }
+
+    @Test
+    void getRegionPopulationTestRegionNameEmpty(){
+        app.getRegionPopulation("");
+    }
 }

@@ -656,6 +656,15 @@ public class App {
     public Integer getRegionPopulation(String regionName){
         Integer population = 0;
         ArrayList<Country> countryList = getCountryList();
+
+        if(regionName == null){
+            System.out.println("No region name");
+            return null;
+        }
+        if(regionName.isEmpty()){
+            System.out.println("No region name");
+            return null;
+        }
         for(Country country : countryList){
             if((country.region).equals(regionName))
                 population += country.population;
