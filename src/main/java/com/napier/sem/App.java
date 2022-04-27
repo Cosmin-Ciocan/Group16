@@ -99,7 +99,8 @@ public class App {
 
         //a.countryRequest(a.countriesWorldPop, "countriesWorldPop");
         //a.cityRequest(a.cityWorldPop, "cityWorldPop");
-        a.outputContinentPopulation(a.getCountryList(), "continentPopulation.md");
+        //a.outputContinentPopulation(a.getCountryList(), "continentPopulation.md");
+        a.outputLanguagePopulation();
 
         // Disconnect from database
         a.disconnect();
@@ -371,6 +372,30 @@ public class App {
         filePrinter(filename, sb);
     }
 
+    public void outputLanguagePopulation(){
+        ArrayList<String> languages = new ArrayList<>();
+        languages.add("Chinese");
+        languages.add("Hindi");
+        languages.add("Spanish");
+        languages.add("English");
+        languages.add("Arabic");
+
+        StringBuilder sb = new StringBuilder();
+        Long worldPop = getWorldPopulation();
+
+        //print header
+        sb.append("| Name | Speaker Population | World Percentage |\r\n");
+        sb.append("| --- | --- | --- |\r\n");
+
+        for(String language : languages){
+            Integer pop = getLanguagePopulation(language);
+            Float worldPerc = (((float) pop / (float) worldPop) * 100);
+            sb.append("| " + language + " | " +
+                    pop + " | " +
+                    worldPerc + " % |\r\n");
+        }
+        filePrinter("LanguagePop.md",sb);
+    }
 
     /**
      * @param cities City list
@@ -541,11 +566,11 @@ public class App {
         return population;
     }
 
-    public Integer getCountryPopulation(String countryName){
+    public Integer getCountryPopulation(String countryCode){
         Integer population = 0;
         ArrayList<Country> countryList = getCountryList();
         for(Country country : countryList){
-            if((country.name).equals(countryName))
+            if((country.code).equals(countryCode))
                 population = country.population;
         }
         return population;
@@ -561,8 +586,8 @@ public class App {
         return population;
     }
 
-    public Integer getContinentPopulation(String continentName){
-        Integer population = 0;
+    public Long getContinentPopulation(String continentName){
+        Long population = Long.valueOf(0);
         ArrayList<Country> countryList = getCountryList();
         for(Country country : countryList){
             if((country.continent).equals(continentName))
@@ -571,13 +596,26 @@ public class App {
         return population;
     }
 
-    public Integer getWorldPopulation(){
-        Integer population = 0;
+    public Long getWorldPopulation(){
+        Long population = Long.valueOf(0);
         ArrayList<Country> countryList = getCountryList();
         for(Country country : countryList){
                 population += country.population;
         }
         return population;
+    }
+
+    public Integer getLanguagePopulation(String language){
+        Float population = Float.valueOf(0);
+        ArrayList<CountryLanguage> countryLanguageList = getCountryLanguageList();
+
+        for(CountryLanguage cl : countryLanguageList){
+            if(cl.language.equals(language)){
+                population += (getCountryPopulation(cl.countryCode) * cl.percentage)/100;
+            }
+        }
+        Integer roundedPop = round(population);
+        return round(population);
     }
 
 
@@ -664,6 +702,29 @@ public class App {
             System.out.println("Failed to get city");
         }
         return countries;
+    }
+
+    public ArrayList<CountryLanguage> getCountryLanguageList(){
+        ArrayList<CountryLanguage> countriesLanguage = new ArrayList<>();
+        try {
+            Statement stmt = con.createStatement();
+
+            String strSelect = "SELECT * FROM countrylanguage";
+
+            ResultSet resultSet = stmt.executeQuery(strSelect);
+            while (resultSet.next()) {
+                CountryLanguage countryLanguage = new CountryLanguage();
+                countryLanguage.countryCode = resultSet.getString("CountryCode");
+                countryLanguage.language = resultSet.getString("Language");
+                countryLanguage.percentage =  resultSet.getFloat("Percentage");
+                countriesLanguage.add(countryLanguage);
+            }
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city");
+        }
+        return countriesLanguage;
     }
 
     public ArrayList<String> getRegionList(){
