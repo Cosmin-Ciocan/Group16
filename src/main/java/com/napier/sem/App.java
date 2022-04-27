@@ -177,6 +177,14 @@ public class App {
      * @throws SQLException Sql exception
      */
     public void countryRequest(String request, String fileName) throws SQLException {
+        if(request == null || request.isEmpty()) {
+            System.out.println("No request");
+            return;
+        }
+        if(fileName == null || fileName.isEmpty()){
+            System.out.println("Filename Missing");
+            return;
+        }
         ResultSet resultSet = databaseRequester(request);
         outputCountry(countryLister(resultSet), fileName);
     }
@@ -188,6 +196,14 @@ public class App {
      * @throws SQLException Sql exception
      */
     public void cityRequest(String request, String fileName) throws SQLException {
+        if(request == null || request.isEmpty()) {
+            System.out.println("No request");
+            return;
+        }
+        if(fileName == null || fileName.isEmpty()){
+            System.out.println("Filename Missing");
+            return;
+        }
         ResultSet resultSet = databaseRequester(request);
         outputCity(cityLister(resultSet), fileName);
     }
@@ -199,6 +215,17 @@ public class App {
      * @throws SQLException Sql exception
      */
     public void capitalCityRequest(String request, String fileName) throws SQLException {
+
+        if(request == null || request.isEmpty()) {
+            System.out.println("No request");
+            return;
+        }
+
+        if(fileName == null || fileName.isEmpty()){
+            System.out.println("Filename Missing");
+            return;
+        }
+
         ResultSet resultSet = databaseRequester(request);
         outputCapitalCity(cityLister(resultSet), fileName);
     }
@@ -215,6 +242,16 @@ public class App {
         // Check employees is not null
         if (countries == null) {
             System.out.println("No countries");
+            return;
+        }
+
+        if(filename == null){
+            System.out.println("No filename");
+            return;
+        }
+
+        if(filename.isEmpty()){
+            System.out.println("No filemame");
             return;
         }
 
@@ -243,6 +280,18 @@ public class App {
             return;
         }
 
+        if(filename == null)
+        {
+            System.out.println("No filename");
+            return;
+        }
+
+        if(filename.isEmpty())
+        {
+            System.out.println("No filename");
+            return;
+        }
+
         StringBuilder sb = new StringBuilder();
         // Print header
         sb.append("| Name | Country | District | Population |\r\n");
@@ -263,6 +312,18 @@ public class App {
     public void outputCapitalCity(ArrayList<City> cities, String filename) {
         if (cities == null) {
             System.out.println("No cities");
+            return;
+        }
+
+        if(filename == null)
+        {
+            System.out.println("No filename");
+            return;
+        }
+
+        if(filename.isEmpty())
+        {
+            System.out.println("No filename");
             return;
         }
 
@@ -288,6 +349,17 @@ public class App {
         if(countries == null)
         {
             System.out.println("No countries");
+            return;
+        }
+        if(filename == null)
+        {
+            System.out.println("No filename");
+            return;
+        }
+
+        if(filename.isEmpty())
+        {
+            System.out.println("No filename");
             return;
         }
 
@@ -320,6 +392,16 @@ public class App {
         if(countries == null)
         {
             System.out.println("No countries");
+            return;
+        }
+
+        if(filename ==  null){
+            System.out.println("No filename");
+            return;
+        }
+
+        if(filename.isEmpty()){
+            System.out.println("No filename");
             return;
         }
         ArrayList<String> regionList = getRegionList();
@@ -358,6 +440,18 @@ public class App {
         if(countries == null)
         {
             System.out.println("No countries");
+            return;
+        }
+
+        if(filename == null)
+        {
+            System.out.println("No filename");
+            return;
+        }
+
+        if(filename.isEmpty())
+        {
+            System.out.println("No filename");
             return;
         }
         ArrayList<String> continentList = getContinentList();
@@ -401,6 +495,16 @@ public class App {
 
         StringBuilder sb = new StringBuilder();
         Long worldPop = getWorldPopulation();
+
+        if(filename ==  null){
+            System.out.println("No filename");
+            return;
+        }
+
+        if(filename.isEmpty()){
+            System.out.println("No filename");
+            return;
+        }
 
         //print header
         sb.append("| Name | Speaker Population | World Percentage |\r\n");
@@ -475,6 +579,16 @@ public class App {
     public Integer getCityPopulation(String cityName){
         Integer population = 0;
         ArrayList<City> cityList = getCityList();
+
+        if(cityName == null){
+            System.out.println("No city name");
+            return null;
+        }
+
+        if(cityName.isEmpty()){
+            System.out.println("No city name");
+            return null;
+        }
         for(City city : cityList){
             if((city.name).equals(cityName))
             population = city.population;
@@ -491,6 +605,16 @@ public class App {
     public Integer getDistrictPopulation(String districtName){
         Integer population = 0;
         ArrayList<City> cityList = getCityList();
+
+        if(districtName == null){
+            System.out.println("No district name");
+            return null;
+        }
+
+        if(districtName.isEmpty()){
+            System.out.println("No district name");
+            return null;
+        }
         for(City city : cityList){
             if((city.district).equals(districtName))
                 population += city.population;
@@ -507,6 +631,16 @@ public class App {
     public Integer getCountryPopulation(String countryCode){
         Integer population = 0;
         ArrayList<Country> countryList = getCountryList();
+
+        if(countryCode == null){
+            System.out.println("No country code");
+            return null;
+        }
+        if(countryCode.isEmpty()){
+            System.out.println("No country code");
+            return null;
+        }
+
         for(Country country : countryList){
             if((country.code).equals(countryCode))
                 population = country.population;
@@ -522,6 +656,15 @@ public class App {
     public Integer getRegionPopulation(String regionName){
         Integer population = 0;
         ArrayList<Country> countryList = getCountryList();
+
+        if(regionName == null){
+            System.out.println("No region name");
+            return null;
+        }
+        if(regionName.isEmpty()){
+            System.out.println("No region name");
+            return null;
+        }
         for(Country country : countryList){
             if((country.region).equals(regionName))
                 population += country.population;
@@ -537,6 +680,14 @@ public class App {
     public Long getContinentPopulation(String continentName){
         Long population = 0L;
         ArrayList<Country> countryList = getCountryList();
+        if(continentName == null){
+            System.out.println("No continent name");
+            return null;
+        }
+        if(continentName.isEmpty()){
+            System.out.println("No continent name");
+            return null;
+        }
         for(Country country : countryList){
             if((country.continent).equals(continentName))
                 population += country.population;
@@ -566,6 +717,16 @@ public class App {
         float population = (float) 0;
         ArrayList<CountryLanguage> countryLanguageList = getCountryLanguageList();
 
+        if(language == null){
+            System.out.println("No language");
+            return null;
+        }
+
+        if(language.isEmpty()){
+            System.out.println("No language");
+            return null;
+        }
+
         for(CountryLanguage cl : countryLanguageList){
             if(cl.language.equals(language)){
                 population += (getCountryPopulation(cl.countryCode) * cl.percentage)/100;
@@ -583,6 +744,11 @@ public class App {
      */
     public City getCity(Integer cityCode){
         City city = new City();
+        if(cityCode == null){
+            System.out.println("No city code");
+            return null;
+        }
+
         try {
             Statement stmt = con.createStatement();
 
@@ -752,6 +918,16 @@ public class App {
     public Integer getCountryCityPopulation(String countryCode){
 
         int cityPop = 0;
+        if(countryCode == null)
+        {
+            System.out.println("No country code");
+            return null;
+        }
+        if(countryCode.isEmpty())
+        {
+            System.out.println("No country code");
+            return null;
+        }
         try {
             Statement stmt = con.createStatement();
 
@@ -774,6 +950,15 @@ public class App {
     {
         ResultSet resultSet;
 
+        if(Query == null){
+            System.out.println("No query");
+            return null;
+        }
+        if(Query.isEmpty()){
+            System.out.println("No query");
+            return null;
+        }
+
         try {
             Statement stmt = con.createStatement();
 
@@ -787,6 +972,14 @@ public class App {
     }
 
     public void filePrinter (String filename, StringBuilder sb ){
+        if(filename == null){
+            System.out.println("No filename");
+            return;
+        }
+        if(filename.isEmpty()){
+            System.out.println("No filename");
+            return;
+        }
         try {
             new File("./reports/").mkdir();
             BufferedWriter writer = new BufferedWriter(new FileWriter("./reports/" + filename));

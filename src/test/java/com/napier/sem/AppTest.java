@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,4 +18,253 @@ public class AppTest {
     {
         app = new App();
     }
+
+    @Test
+    void countryRequestTestRequestNull() throws SQLException {
+        app.countryRequest(null,"test.md");
+    }
+
+    @Test
+    void countryRequestTestRequestEmpty() throws SQLException {
+        app.countryRequest("","test.md");
+    }
+
+    @Test
+    void countryRequestTestFilenameNull() throws SQLException {
+        app.countryRequest("request",null);
+    }
+
+    @Test
+    void countryRequestTestFilenameEmpty() throws SQLException {
+        app.countryRequest("request","");
+    }
+
+    @Test
+    void cityRequestTestRequestNull() throws SQLException {
+        app.cityRequest(null,"test.md");
+    }
+
+    @Test
+    void cityRequestTestRequestEmpty() throws SQLException {
+        app.cityRequest("","test.md");
+    }
+
+    @Test
+    void cityRequestTestFilenameNull() throws SQLException {
+        app.cityRequest("request",null);
+    }
+
+    @Test
+    void cityRequestTestFilenameEmpty() throws SQLException {
+        app.cityRequest("request","");
+    }
+
+    @Test
+    void capitalCityRequestTestRequestNull() throws SQLException {
+        app.capitalCityRequest(null, "test.md");
+    }
+
+    @Test
+    void capitalCityRequestTestRequestEmpty() throws SQLException {
+        app.capitalCityRequest("", "test.md");
+    }
+
+    @Test
+    void capitalCityRequestTestFilenameNull() throws SQLException {
+        app.capitalCityRequest("request", null);
+    }
+
+    @Test
+    void capitalCityRequestTestFilenameEmpty() throws SQLException {
+        app.capitalCityRequest("request", "");
+    }
+
+    @Test
+    void outputCountryTestFilenameNull() {
+        ArrayList<Country> countries =  new ArrayList<>();
+        app.outputCountry(countries, null);
+    }
+
+    @Test
+    void outputCountryTestCountryNull(){
+        app.outputCountry(null, "test.md");
+    }
+
+    @Test
+    void outputCountryTestFilenameEmpty(){
+        ArrayList<Country> countries =  new ArrayList<>();
+        app.outputCountry(countries, "");
+    }
+
+    @Test
+    void outputCityTestFilenameNull(){
+        ArrayList<City> cities = new ArrayList<>();
+        app.outputCity(cities, null);
+    }
+
+    @Test
+    void outputCityTestFilenameEmpty(){
+        ArrayList<City> cities = new ArrayList<>();
+        app.outputCity(cities, "");
+    }
+
+    @Test
+    void outputCityTestCityNull(){
+        app.outputCity(null, "test.md");
+    }
+
+    @Test
+    void outputCapitalCityTestCapitalCityNull(){
+        app.outputCapitalCity(null, "test.md");
+    }
+
+    @Test
+    void outputCapitalCityTestFilenameNull(){
+        ArrayList<City> cities = new ArrayList<>();
+        app.outputCapitalCity(cities, null);
+    }
+
+    @Test
+    void outputCapitalCityTestFilenameEmpty(){
+        ArrayList<City> cities = new ArrayList<>();
+        app.outputCapitalCity(cities, "");
+    }
+
+    @Test
+    void outputCountryPopulationTestFilenameNull(){
+        app.outputCountryPopulation(null);
+    }
+
+    @Test
+    void outputCountryPopulationTestFilenameEmpty(){
+        app.outputCountryPopulation("");
+    }
+
+    @Test
+    void outputRegionPopulationTestFilenameNull(){
+        app.outputRegionPopulation(null);
+    }
+
+    @Test
+    void outputRegionPopulationTestFilenameEmpty(){
+        app.outputRegionPopulation("");
+    }
+
+    @Test
+    void outputContinentPopulationTestFilenameNull(){
+        app.outputContinentPopulation(null);
+    }
+
+    @Test
+    void outputContinentPopulationTestFilenameEmpty(){
+        app.outputContinentPopulation("");
+    }
+
+    @Test
+    void outputLanguagePopulationTestFilenameNull(){
+        app.outputLanguagePopulation(null);
+    }
+
+    @Test
+    void outputLanguagePopulationTestFilenameEmpty(){
+        app.outputLanguagePopulation("");
+    }
+
+    @Test
+    void getCityPopulationTestCityNameNull(){
+        app.getCityPopulation(null);
+    }
+
+    @Test
+    void getCityPopulationTestCityNameEmpty(){
+        app.getCityPopulation("");
+    }
+
+    @Test
+    void getDistrictPopulationTestDistrictNameNull(){
+        app.getDistrictPopulation( null);
+    }
+
+    @Test
+    void getDistrictPopulationTestDistrictNameEmpty(){
+        app.getDistrictPopulation( "");
+    }
+
+    @Test
+    void getCountryPopulationTestCountryCodeNull(){
+        app.getCountryPopulation(null);
+    }
+
+    @Test
+    void getCountryPopulationTestCountryCodeEmpty(){
+        app.getCountryPopulation("");
+    }
+
+    @Test
+    void getRegionPopulationTestRegionNameNull(){
+        app.getRegionPopulation(null);
+    }
+
+    @Test
+    void getRegionPopulationTestRegionNameEmpty(){
+        app.getRegionPopulation("");
+    }
+
+    @Test
+    void getContinentPopulationTestContinentNameNull(){
+        app.getContinentPopulation(null);
+    }
+
+    @Test
+    void getContinentPopulationTestContinentNameEmpty(){
+        app.getContinentPopulation("");
+    }
+
+    @Test
+    void getLanguagePopulationTestLanguageNull(){
+        app.getLanguagePopulation(null);
+    }
+
+    @Test
+    void getLanguagePopulationTestLanguageEmpty(){
+        app.getLanguagePopulation("");
+    }
+
+    @Test
+    void getCityTestCityCodeNull(){
+        app.getCity(null);
+    }
+
+    @Test
+    void getCountryCityPopulationTestCountryCodeNull(){
+        app.getCountryCityPopulation(null);
+    }
+
+    @Test
+    void getCountryCityPopulationTestCountryCodeEmpty(){
+        app.getCountryCityPopulation("");
+    }
+
+    @Test
+    void databaseRequesterTestQueryNull(){
+        app.databaseRequester(null);
+    }
+
+    @Test
+    void databaseRequesterTestQueryEmpty(){
+        app.databaseRequester("");
+    }
+
+    @Test
+    void filePrinterTestFilenameNull(){
+        StringBuilder test = new StringBuilder();
+        app.filePrinter(null, test);
+    }
+
+    @Test
+    void filePrinterTestFilenameEmpty(){
+        StringBuilder test = new StringBuilder();
+        app.filePrinter("", test);
+    }
+
 }
