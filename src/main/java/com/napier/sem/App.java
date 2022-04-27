@@ -496,6 +496,16 @@ public class App {
         StringBuilder sb = new StringBuilder();
         Long worldPop = getWorldPopulation();
 
+        if(filename ==  null){
+            System.out.println("No filename");
+            return;
+        }
+
+        if(filename.isEmpty()){
+            System.out.println("No filename");
+            return;
+        }
+
         //print header
         sb.append("| Name | Speaker Population | World Percentage |\r\n");
         sb.append("| --- | --- | --- |\r\n");

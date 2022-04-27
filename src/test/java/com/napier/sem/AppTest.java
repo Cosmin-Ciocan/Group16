@@ -159,4 +159,14 @@ public class AppTest {
     void outputContinentPopulationTestFilenameEmpty(){
         app.outputContinentPopulation("");
     }
+
+    @Test
+    void outputLanguagePopulationTestFilenameNull(){
+        app.outputLanguagePopulation(null);
+    }
+
+    @Test
+    void outputLanguagePopulationTestFilenameEmpty(){
+        app.outputLanguagePopulation("");
+    }
 }
