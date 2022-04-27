@@ -946,6 +946,11 @@ public class App {
     }
 
 
+    /**
+     * Make a request to the database
+     * @param Query The request SQL query
+     * @return The result set of your query
+     */
     public ResultSet databaseRequester (String Query)
     {
         ResultSet resultSet;
@@ -971,6 +976,11 @@ public class App {
         return resultSet;
     }
 
+    /**
+     * Print a string builder into a markdown file
+     * @param filename Name of the output file
+     * @param sb The string you want to print
+     */
     public void filePrinter (String filename, StringBuilder sb ){
         if(filename == null){
             System.out.println("No filename");
