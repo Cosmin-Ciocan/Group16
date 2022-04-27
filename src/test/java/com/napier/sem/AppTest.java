@@ -38,4 +38,25 @@ public class AppTest {
     void countryRequestTestFilenameEmpty() throws SQLException {
         app.countryRequest("request","");
     }
+
+    @Test
+    void cityRequestTestRequestNull() throws SQLException {
+        app.cityRequest(null,"test.md");
+    }
+
+    @Test
+    void cityRequestTestRequestEmpty() throws SQLException {
+        app.countryRequest("","test.md");
+    }
+
+    @Test
+    void cityRequestTestFilenameNull() throws SQLException {
+        app.countryRequest("request",null);
+    }
+
+    @Test
+    void cityRequestTestFilenameEmpty() throws SQLException {
+        app.countryRequest("request","");
+    }
+
 }
