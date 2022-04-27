@@ -394,6 +394,14 @@ public class App {
             System.out.println("No countries");
             return;
         }
+
+        if(filename ==  null){
+            System.out.println("No filename");
+        }
+
+        if(filename.isEmpty()){
+            System.out.println("No filename");
+        }
         ArrayList<String> regionList = getRegionList();
         StringBuilder sb = new StringBuilder();
 
