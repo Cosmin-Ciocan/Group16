@@ -177,6 +177,14 @@ public class App {
      * @throws SQLException Sql exception
      */
     public void countryRequest(String request, String fileName) throws SQLException {
+        if(request == null || request.isEmpty()) {
+            System.out.println("No request");
+            return;
+        }
+        if(fileName == null || fileName.isEmpty()){
+            System.out.println("Filename Missing");
+            return;
+        }
         ResultSet resultSet = databaseRequester(request);
         outputCountry(countryLister(resultSet), fileName);
     }
