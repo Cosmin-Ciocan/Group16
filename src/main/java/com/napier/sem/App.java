@@ -972,6 +972,14 @@ public class App {
     }
 
     public void filePrinter (String filename, StringBuilder sb ){
+        if(filename == null){
+            System.out.println("No filename");
+            return;
+        }
+        if(filename.isEmpty()){
+            System.out.println("No filename");
+            return;
+        }
         try {
             new File("./reports/").mkdir();
             BufferedWriter writer = new BufferedWriter(new FileWriter("./reports/" + filename));

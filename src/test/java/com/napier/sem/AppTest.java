@@ -254,4 +254,17 @@ public class AppTest {
     void databaseRequesterTestQueryEmpty(){
         app.databaseRequester("");
     }
+
+    @Test
+    void filePrinterTestFilenameNull(){
+        StringBuilder test = new StringBuilder();
+        app.filePrinter(null, test);
+    }
+
+    @Test
+    void filePrinterTestFilenameEmpty(){
+        StringBuilder test = new StringBuilder();
+        app.filePrinter("", test);
+    }
+
 }
