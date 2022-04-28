@@ -116,7 +116,7 @@ public class App {
         a.outputContinentPopulation("DetailedPopulationContinent.md");
         a.outputRegionPopulation("DetailedPopulationRegion.md");
         a.outputCountryPopulation("DetailedPopulationCountry.md");
-
+        a.outputLanguagePopulation("LanguagePopulation.md");
         // Disconnect from database
         a.disconnect();
     }
@@ -628,16 +628,15 @@ public class App {
      * @param countryCode code of the country
      * @return city population
      */
-    public Integer getCountryPopulation(String countryCode){
+    public Integer getCountryPopulation(String countryCode, ArrayList<Country> countryList){
         Integer population = 0;
-        ArrayList<Country> countryList = getCountryList();
 
-        if(countryCode == null){
+        if(countryCode == null || countryCode.isEmpty()){
             System.out.println("No country code");
             return null;
         }
-        if(countryCode.isEmpty()){
-            System.out.println("No country code");
+        if(countryList == null){
+            System.out.println("No country list");
             return null;
         }
 
@@ -716,6 +715,7 @@ public class App {
     public Integer getLanguagePopulation(String language){
         float population = (float) 0;
         ArrayList<CountryLanguage> countryLanguageList = getCountryLanguageList();
+        ArrayList<Country> countryList = getCountryList();
 
         if(language == null){
             System.out.println("No language");
@@ -729,7 +729,7 @@ public class App {
 
         for(CountryLanguage cl : countryLanguageList){
             if(cl.language.equals(language)){
-                population += (getCountryPopulation(cl.countryCode) * cl.percentage)/100;
+                population += (getCountryPopulation(cl.countryCode, countryList) * cl.percentage)/100;
             }
         }
         return round(population);

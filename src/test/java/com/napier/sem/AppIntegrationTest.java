@@ -21,11 +21,77 @@ import static org.junit.jupiter.api.Assertions.*;
 
         }
 
+        /**
+         * Testing getCity()
+         */
         @Test
-        void testGetCity()
-        {
+        void getCityTest() {
             City city = app.getCity(1);
-            assertEquals("The city code is not AFG",city.countryCode, "AFG");
+            assertEquals("AFG",city.countryCode, "The city country code is wrong");
+        }
+
+        /**
+         * Testing getCityPopulation()
+         */
+        @Test
+        void getCityPopulationTest(){
+            int population = app.getCityPopulation("Paris");
+            assertEquals( 2125246, population, "The city population is false" );
+        }
+
+        /**
+         * Testing getCityPopulation()
+         */
+        @Test
+        void getDistrictPopulationTest(){
+            int population = app.getDistrictPopulation("Herat");
+            assertEquals( 186800, population, "The district population is false" );
+        }
+
+        /**
+         * Testing getCountryPopulation()
+         */
+        @Test
+        void getCountryPopulationTest(){
+            ArrayList<Country> countryList = app.getCountryList();
+            int population = app.getCountryPopulation("BEL", countryList);
+            assertEquals( 10239000, population, "The country population is false" );
+        }
+
+        /**
+         * Testing getRegionPopulation()
+         */
+        @Test
+        void getRegionPopulationTest(){
+            int population = app.getRegionPopulation("Melanesia");
+            assertEquals( 6472000, population, "The region population is false" );
+        }
+
+        /**
+         * Testing getContinentPopulation()
+         */
+        @Test
+        void getContinentPopulationTest(){
+            long population = app.getContinentPopulation("Asia");
+            assertEquals( 3705025700L, population, "The continent population is false" );
+        }
+
+        /**
+         * Testing getWorldPopulation()
+         */
+        @Test
+        void getWorldPopulationTest(){
+            long population = app.getWorldPopulation();
+            assertEquals( 6078749450L, population, "The world population is false" );
+        }
+
+        /**
+         * Testing getLanguagePopulation()
+         */
+        @Test
+        void getLanguagePopulationTest(){
+            int population = app.getLanguagePopulation("English");
+            assertEquals( 347077824, population, "The language population is false" );
         }
 
 }
