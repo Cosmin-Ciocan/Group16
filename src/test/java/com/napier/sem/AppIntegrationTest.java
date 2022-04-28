@@ -94,4 +94,25 @@ import static org.junit.jupiter.api.Assertions.*;
             assertEquals( 347077824, population, "The language population is false" );
         }
 
+        /**
+         * Testing getCityList()
+         */
+        @Test
+        void getCityListTest(){
+            ArrayList<City> cities = app.getCityList();
+            City first = cities.get(0);
+            assertEquals(Optional.of(10500000), Optional.ofNullable(first.population), "The first city list element is false");
+        }
+
+        /**
+         * Testing getRegionList()
+         */
+        @Test
+        void getRegionListTest(){
+            ArrayList<String> regionList = app.getRegionList();
+            String first = regionList.get(0);
+            assertEquals("Caribbean", first, "The first city list element is false");
+        }
+
 }
+
