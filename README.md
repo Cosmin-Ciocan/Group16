@@ -9,36 +9,36 @@
 32 requirements of 32 have been implemented, which is 100%
 
 | ID | Name | Met | Link |
-| --- |--- | --- |---|
-| 1 | All the countries in the world organised by largest population to smallest. | Yes |   |
-| 2 | All the countries in a continent organised by largest population to smallest. | Yes |   |
-| 3 | All the countries in a region organised by largest population to smallest. | Yes |   |
-| 4 | The top N populated countries in the world where N is provided by the user. | Yes |   |
-| 5 | The top N populated countries in a continent where N is provided by the user. | Yes |   |
-| 6 | The top N populated countries in a region where N is provided by the user. | Yes |   |
-| 7 | All the cities in the world organised by largest population to smallest. | Yes |   |
-| 8 | All the cities in a continent organised by largest population to smallest. | Yes |   |
-| 9 | All the cities in a region organised by largest population to smallest. | Yes |   |
-| 10 | All the cities in a country organised by largest population to smallest. | Yes |   |
-| 11 | All the cities in a district organised by largest population to smallest. | Yes |   |
-| 12 | The top N populated cities in the world where N is provided by the user. | Yes |   |
-| 13 | The top N populated cities in a continent where N is provided by the user. | Yes | |
-| 14 | The top N populated cities in a region where N is provided by the user. | Yes| |
-| 15 | The top N populated cities in a country where N is provided by the user. | Yes | |
-| 16 | The top N populated cities in a district where N is provided by the user. | Yes | |
-| 17 | All the capital cities in the world organised by largest population to smallest. | Yes | |
-| 18 | All the capital cities in a continent organised by largest population to smallest. | Yes | |
-| 19 | All the capital cities in a region organised by largest to smallest. | Yes | |
-| 20 | The top N populated capital cities in the world where N is provided by the user. | Yes | |
-| 21 | The top N populated capital cities in a continent where N is provided by the user. | Yes | |
-| 22 | The top N populated capital cities in a region where N is provided by the user. | Yes | |
-| 23 | The population of people, people living in cities, and people not living in cities in each continent. | Yes |
-| 24 | The population of people, people living in cities, and people not living in cities in each region. | Yes | |
-| 25 | The population of people, people living in cities, and people not living in cities in each country. | Yes | |
-| 26 | The population of the world. | Yes | |
-| 27 | The population of a continent. | Yes | |
-| 28 | The population of a region. | Yes | |
-| 29 | The population of a country. | Yes | |
-| 30 | The population of a district. | Yes | |
-| 31 | The population of a city.| Yes | |
-| 32 | The number of people who speak specific languages from greatest to smallest, including the percentage of the world population| Yes | |
+| --- |--- | --- |------|
+| 1 | All the countries in the world organised by largest population to smallest. | Yes |   https://github.com/Cosmin-Ciocan/Group16/blob/reports/WorldCountriesPopulation.md   |
+| 2 | All the countries in a continent organised by largest population to smallest. | Yes |   https://github.com/Cosmin-Ciocan/Group16/blob/reports/ContinentCountriesPopulation.md   |
+| 3 | All the countries in a region organised by largest population to smallest. | Yes |   https://github.com/Cosmin-Ciocan/Group16/blob/reports/RegionCountriesPopulation.md   |
+| 4 | The top N populated countries in the world where N is provided by the user. | Yes |  https://github.com/Cosmin-Ciocan/Group16/blob/reports/TopWorldCountriesPopulation.md    |
+| 5 | The top N populated countries in a continent where N is provided by the user. | Yes |   https://github.com/Cosmin-Ciocan/Group16/blob/reports/TopContinentCountriesPopulation.md   |
+| 6 | The top N populated countries in a region where N is provided by the user. | Yes |  https://github.com/Cosmin-Ciocan/Group16/blob/reports/TopRegionCountriesPopulation.md    |
+| 7 | All the cities in the world organised by largest population to smallest. | Yes |   https://github.com/Cosmin-Ciocan/Group16/blob/reports/WorldCapitalCitiesPop.md   |
+| 8 | All the cities in a continent organised by largest population to smallest. | Yes |   https://github.com/Cosmin-Ciocan/Group16/blob/reports/ContinentCitiesPopulation.md   |
+| 9 | All the cities in a region organised by largest population to smallest. | Yes |   https://github.com/Cosmin-Ciocan/Group16/blob/reports/RegionTopCitiesPopulation.md   |
+| 10 | All the cities in a country organised by largest population to smallest. | Yes |   https://github.com/Cosmin-Ciocan/Group16/blob/reports/CountryCitiesPopulation.md   |
+| 11 | All the cities in a district organised by largest population to smallest. | Yes |   https://github.com/Cosmin-Ciocan/Group16/blob/reports/DistrictTopCitiesPopulation.md   |
+| 12 | The top N populated cities in the world where N is provided by the user. | Yes |   https://github.com/Cosmin-Ciocan/Group16/blob/reports/WorldTopCitiesPopulation.md   |
+| 13 | The top N populated cities in a continent where N is provided by the user. | Yes |   https://github.com/Cosmin-Ciocan/Group16/blob/reports/ContinentTopCitiesPopulation.md   |
+| 14 | The top N populated cities in a region where N is provided by the user. | Yes|   https://github.com/Cosmin-Ciocan/Group16/blob/reports/RegionTopCitiesPopulation.md   |
+| 15 | The top N populated cities in a country where N is provided by the user. | Yes |   https://github.com/Cosmin-Ciocan/Group16/blob/reports/ContinentTopCitiesPopulation.md   |
+| 16 | The top N populated cities in a district where N is provided by the user. | Yes |   https://github.com/Cosmin-Ciocan/Group16/blob/reports/DistrictTopCitiesPopulation.md   |
+| 17 | All the capital cities in the world organised by largest population to smallest. | Yes |   https://github.com/Cosmin-Ciocan/Group16/blob/reports/WorldCapitalCitiesPop.md   |
+| 18 | All the capital cities in a continent organised by largest population to smallest. | Yes |   https://github.com/Cosmin-Ciocan/Group16/blob/reports/ContinentCapitalCitiesPop.md   |
+| 19 | All the capital cities in a region organised by largest to smallest. | Yes |   https://github.com/Cosmin-Ciocan/Group16/blob/reports/RegionCapitalCitiesPop.md   |
+| 20 | The top N populated capital cities in the world where N is provided by the user. | Yes |   https://github.com/Cosmin-Ciocan/Group16/blob/reports/WorldTopCapitalCitiesPop.md   |
+| 21 | The top N populated capital cities in a continent where N is provided by the user. | Yes |   https://github.com/Cosmin-Ciocan/Group16/blob/reports/ContinentTopCapitalCitiesPop.md   |
+| 22 | The top N populated capital cities in a region where N is provided by the user. | Yes |   https://github.com/Cosmin-Ciocan/Group16/blob/reports/RegionTopCapitalCitiesPop.md   |
+| 23 | The population of people, people living in cities, and people not living in cities in each continent. | Yes | https://github.com/Cosmin-Ciocan/Group16/blob/reports/DetailedPopulationContinent.md |
+| 24 | The population of people, people living in cities, and people not living in cities in each region. | Yes |   https://github.com/Cosmin-Ciocan/Group16/blob/reports/DetailedPopulationRegion.md   |
+| 25 | The population of people, people living in cities, and people not living in cities in each country. | Yes |   https://github.com/Cosmin-Ciocan/Group16/blob/reports/DetailedPopulationCountry.md   |
+| 26 | The population of the world. | Yes |   https://github.com/Cosmin-Ciocan/Group16/blob/reports/WorldPopulation.md   |
+| 27 | The population of a continent. | Yes |  https://github.com/Cosmin-Ciocan/Group16/blob/reports/ContinentAsiaPopulation.md    |
+| 28 | The population of a region. | Yes |    https://github.com/Cosmin-Ciocan/Group16/blob/reports/RegionCaribbeanPopulation.md  |
+| 29 | The population of a country. | Yes |   https://github.com/Cosmin-Ciocan/Group16/blob/reports/CountrySpainPopulation.md   |
+| 30 | The population of a district. | Yes |   https://github.com/Cosmin-Ciocan/Group16/blob/reports/DistrictHeratPopulation.md   |
+| 31 | The population of a city.| Yes | https://github.com/Cosmin-Ciocan/Group16/blob/reports/CityAmsterdamPopulation |
+| 32 | The number of people who speak specific languages from greatest to smallest, including the percentage of the world population| Yes |   https://github.com/Cosmin-Ciocan/Group16/blob/reports/LanguagePopulation.md   |
