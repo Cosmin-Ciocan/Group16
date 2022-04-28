@@ -117,6 +117,11 @@ public class App {
         a.outputRegionPopulation("DetailedPopulationRegion.md");
         a.outputCountryPopulation("DetailedPopulationCountry.md");
         a.outputLanguagePopulation("LanguagePopulation.md");
+        a.outputLong(a.getWorldPopulation(),"WorldPopulation.md");
+        a.outputLong(a.getContinentPopulation("Asia"),"ContinentAsiaPopulation.md");
+        a.outputInteger(a.getRegionPopulation("Caribbean"),"RegionCaribbeanPopulation.md");
+        a.outputInteger(a.getCountryPopulation("ESP",a.getCountryList()),"CountrySpainPopulation.md");
+        a.outputInteger(a.getCityPopulation("Amsterdam"),"CityAmsterdamPopulation");
         // Disconnect from database
         a.disconnect();
     }
@@ -516,6 +521,18 @@ public class App {
             sb.append("| ").append(language).append(" | ").append(pop).append(" | ").append(worldPerc).append(" % |\r\n");
         }
         filePrinter(filename,sb);
+    }
+
+    public void outputInteger(Integer number,String filename){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Population : ").append(number);
+        filePrinter(filename, sb);
+    }
+
+    public void outputLong(Long number,String filename){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Population : ").append(number);
+        filePrinter(filename, sb);
     }
 
 
