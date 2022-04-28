@@ -121,6 +121,7 @@ public class App {
         a.outputLong(a.getContinentPopulation("Asia"),"ContinentAsiaPopulation.md");
         a.outputInteger(a.getRegionPopulation("Caribbean"),"RegionCaribbeanPopulation.md");
         a.outputInteger(a.getCountryPopulation("ESP",a.getCountryList()),"CountrySpainPopulation.md");
+        a.outputInteger(a.getDistrictPopulation("Herat"),"DistrictHeratPopulation.md");
         a.outputInteger(a.getCityPopulation("Amsterdam"),"CityAmsterdamPopulation");
         // Disconnect from database
         a.disconnect();
